@@ -1,9 +1,10 @@
 const mongoose = require('mongoose');
+const moment = require("moment");
 
 const userSchema = new mongoose.Schema({
     date: {
-        type: Date,
-        default: Date.now
+        type: String,
+        default: moment(new Date()).format('l')
     },
     temp: {
         type: []
