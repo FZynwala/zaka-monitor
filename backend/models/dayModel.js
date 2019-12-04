@@ -6,12 +6,11 @@ const userSchema = new mongoose.Schema({
         type: String,
         default: moment(new Date()).format('l')
     },
-    temp: {
+    sensorA: {
         type: []
     },
-    sensorID: {
-        type: String,
-        required: true
+    sensorB: {
+        type: []
     }
 });
 
