@@ -1,0 +1,21 @@
+.description {
+    font-weight: bold;
+}
+
+.time {
+    margin-left: 4%;
+    
+}
+
+.max-data {
+    color: #e22727;
+    
+}
+
+.min-data {
+    color: #1171c0;
+}
+
+.top-margin {
+    margin-top: 2%;
+}

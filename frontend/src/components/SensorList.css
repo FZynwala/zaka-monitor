@@ -1,0 +1,9 @@
+.ui.cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    border-radius: 2%;
+    margin-top: 5%;
+}

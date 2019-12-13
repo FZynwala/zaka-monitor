@@ -3,14 +3,22 @@ const moment = require("moment");
 
 const userSchema = new mongoose.Schema({
     date: {
-        type: String,
-        default: moment(new Date()).format('l')
+        type: String
     },
-    sensorA: {
+    sensor01: {
         type: []
     },
-    sensorB: {
+    sensor02: {
         type: []
+    },
+    maxTemp: {
+        type: {
+            sensor01: {},
+            sensor02: {}
+        }
+    },
+    minTemp: {
+        type: {}
     }
 });
 
