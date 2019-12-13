@@ -1,0 +1,21 @@
+{
+  "files": {
+    "main.css": "/FZynwala/zaka-monitor/static/css/main.e0c78999.chunk.css",
+    "main.js": "/FZynwala/zaka-monitor/static/js/main.1482e1d9.chunk.js",
+    "main.js.map": "/FZynwala/zaka-monitor/static/js/main.1482e1d9.chunk.js.map",
+    "runtime-main.js": "/FZynwala/zaka-monitor/static/js/runtime-main.c2ffc97c.js",
+    "runtime-main.js.map": "/FZynwala/zaka-monitor/static/js/runtime-main.c2ffc97c.js.map",
+    "static/js/2.9ef4e34b.chunk.js": "/FZynwala/zaka-monitor/static/js/2.9ef4e34b.chunk.js",
+    "static/js/2.9ef4e34b.chunk.js.map": "/FZynwala/zaka-monitor/static/js/2.9ef4e34b.chunk.js.map",
+    "index.html": "/FZynwala/zaka-monitor/index.html",
+    "precache-manifest.ef4a2f8143803475484a2a119c7e200f.js": "/FZynwala/zaka-monitor/precache-manifest.ef4a2f8143803475484a2a119c7e200f.js",
+    "service-worker.js": "/FZynwala/zaka-monitor/service-worker.js",
+    "static/css/main.e0c78999.chunk.css.map": "/FZynwala/zaka-monitor/static/css/main.e0c78999.chunk.css.map"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.c2ffc97c.js",
+    "static/js/2.9ef4e34b.chunk.js",
+    "static/css/main.e0c78999.chunk.css",
+    "static/js/main.1482e1d9.chunk.js"
+  ]
+}
