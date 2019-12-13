@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "298efc91a7783fe413b6d258dbb655d7",
+    "revision": "ee8ed644681b14901ac324eff95a3591",
     "url": "/FZynwala/zaka-monitor/index.html"
   },
   {
