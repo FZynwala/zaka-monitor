@@ -20,9 +20,10 @@ router.post('/:temp/:humidity/:id', async (req, res) => {
     
 
     if(!foundDay) {
+        console.log('Hello from not foundDay');
         if(sensor === 'sensor01') {
             const day = new dayModel.Day({ 
-                sensorA: data,
+                sensor01: data,
                 date: moment(new Date()).tz('Europe/Warsaw').format('l')
             });
             console.log(`Day: ${day}`);
@@ -36,7 +37,8 @@ router.post('/:temp/:humidity/:id', async (req, res) => {
 
         } else if(sensor === 'sensor02') {
             const day = new dayModel.Day({ 
-                sensorB: data
+                sensor02: data,
+                date: moment(new Date()).tz('Europe/Warsaw').format('l')
             });
 
             try {

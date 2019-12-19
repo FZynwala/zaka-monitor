@@ -27,6 +27,14 @@ export default class Card extends React.Component {
 
 		return 'Loding...'
 	};
+
+	dotColor= () => {
+		if(this.props.id === '1') {
+			return "yellow";
+		} else if(this.props.id === '2') {
+			return "blue"
+		}
+	};
 	 
 	render() {
 		if(this.props.data) {
@@ -45,20 +53,23 @@ export default class Card extends React.Component {
 						<div className="header">{this.props.title}</div>
 						<div className="meta">Salon na górze</div>
 						<div className="description">
-							Humidity: {`${hum}%`} <br/>
+							Wilgotność: {`${hum}%`} <br/>
 							<span className="max-data">
 								Max: {`${this.renderMaxTemp().maxTemp} \u2103`} 
-								<span className="time">Time: {`${this.renderMaxTemp().time}`} </span><br/>
+								<span className="time">o godz: {`${this.renderMaxTemp().time}`} </span><br/>
 							</span>
 							<span className="min-data">
 								Min: {`${this.renderMinTemp().minTemp} \u2103`} 
-								<span className="time">Time: {`${this.renderMinTemp().time}`} </span><br/>
+								<span className="time">o godz: {`${this.renderMinTemp().time}`} </span><br/>
 							</span>
-							Time: {`${time}`} <br/>
+							Czas: {`${time}`} <br/>
 						</div>
 						<div className="extra content">
 							<div className="right floated top-margin">
 								<Link to={`/chart/temp/${this.props.id}`} className="ui purple button">Wykres</Link>
+							</div>
+							<div className="left floated">
+								<div className={`dot-${this.dotColor()}`}></div>
 							</div>
 						</div>
 					</div>

@@ -19,3 +19,19 @@
 .top-margin {
     margin-top: 2%;
 }
+
+.dot-yellow {
+    border-radius: 9999px;
+    width: 20px;
+    height: 20px;
+    margin-top: 15px;
+    background-color: #fadb14;
+}
+
+.dot-blue {
+    border-radius: 9999px;
+    width: 20px;
+    height: 20px;
+    margin-top: 15px;
+    background-color: #1890ff;
+}
