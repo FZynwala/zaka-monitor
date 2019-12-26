@@ -2,7 +2,7 @@ import './ShowChart.css';
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import Modal from './Modal';
+import ChartModal from './ChartModal';
 import { fetchToday } from '../actions';
 
 class ShowChart extends React.Component {
@@ -69,7 +69,7 @@ class ShowChart extends React.Component {
     render() {
         console.log(this.props);
         return (
-            <Modal 
+            <ChartModal 
                 xData={this.prepareTimeToChart()}
                 yData={this.prepareTempToChart()}
                 type={this.props.match.path === '/chart/temp/:id' ? 'temp' : 'hum'}

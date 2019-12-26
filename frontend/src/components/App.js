@@ -1,3 +1,4 @@
+import './App.css';
 import React from 'react';
 import { connect } from 'react-redux';
 import { HashRouter, Route } from 'react-router-dom';
@@ -8,6 +9,7 @@ import { fetchToday } from '../actions';
 import Chart from './chart';
 import history from '../history';
 import ShowChart from './ShowChart';
+import Settings from './Settings';
 
 class App extends React.Component {
     componentDidMount() {
@@ -34,11 +36,13 @@ class App extends React.Component {
     render() {
         return (
             <div>
+                
                 <Header />
                 <HashRouter history={history}>
                     <Route path="/" exact component={SensorsList} />
                     <Route path="/chart/temp/:id" exact component={ShowChart} />
                     <Route path="/chart/hum/:id" exact component={ShowChart} />
+                    <Route path="/settings" exact component={Settings} />
                 </HashRouter>
                 
             </div>

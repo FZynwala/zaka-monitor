@@ -1,17 +1,18 @@
 import './SensorList.css';
 import React from 'react';
 import { connect } from 'react-redux';
-import { fetchToday } from '../actions';
+import { fetchToday, fetchName } from '../actions';
 import Sensor from './Sensor';
 import Card from './Card';
 
 class SensorsList extends React.Component {
     componentDidMount() {
         this.props.fetchToday();
+        this.props.fetchName();
     };
 
     renderData = () => {
-        if(this.props.sensor01) {
+        if(this.props.maxTemp) {
             const { sensor01, sensor02 } = this.props;
             
             const tempA = sensor01[sensor01.length-1];
@@ -35,16 +36,34 @@ class SensorsList extends React.Component {
         });
     };
 
+    renderNames() {
+		console.log(this.props.names);
+		if(this.props.names.a) {
+			console.log(this.props.names);
+			const name1 = this.props.names.a.name;
+			const name2 = this.props.names.b.name;
+
+			return { name1, name2 };
+			
+		} else {
+			console.log(this.props.names);
+			
+			return 'Loading...';
+		}
+
+	};
+
     render() {
         console.log(this.props);
         return (
             <div className="ui cards">
-                <Card data={this.renderData().tempA} maxTemp={this.renderData().maxTemp01} minTemp={this.renderData().minTemp01} title='Sensor A' id='1' />
-                <Card data={this.renderData().tempB} maxTemp={this.renderData().maxTemp02} minTemp={this.renderData().minTemp02} title='Sensor B' id='2' />
+                <Card data={this.renderData().tempA} maxTemp={this.renderData().maxTemp01} minTemp={this.renderData().minTemp01} title='Sensor A' id='1' history={this.props.history} name={this.renderNames().name1} />
+                <Card data={this.renderData().tempB} maxTemp={this.renderData().maxTemp02} minTemp={this.renderData().minTemp02} title='Sensor B' id='2' history={this.props.history} name={this.renderNames().name2} />
             </div>
         );
     };
 }
+
 
 const mapStateToProps = (state) => {
     console.log(state);
@@ -52,8 +71,9 @@ const mapStateToProps = (state) => {
         sensor01: state.data.sensor01,
         sensor02: state.data.sensor02,
         maxTemp: state.data.maxTemp,
-        minTemp: state.data.minTemp
+        minTemp: state.data.minTemp,
+        names: state.names
     };
 };
 
-export default connect(mapStateToProps, { fetchToday })(SensorsList);
+export default connect(mapStateToProps, { fetchToday, fetchName })(SensorsList);

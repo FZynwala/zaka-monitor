@@ -1,10 +1,15 @@
 import './Card.css';
 import React from 'react';
 import { Link } from 'react-router-dom';
-//import { max } from 'moment';
+import { connect } from 'react-redux';
+
+import { fetchName } from '../actions';
 
 
-export default class Card extends React.Component {
+class Card extends React.Component {
+	componentDidMount() {
+		//this.props.fetchName();
+	};
 
 	renderMaxTemp = () => {
 		if(this.props.maxTemp) {
@@ -28,12 +33,17 @@ export default class Card extends React.Component {
 		return 'Loding...'
 	};
 
-	dotColor= () => {
+	dotColor = () => {
 		if(this.props.id === '1') {
 			return "yellow";
 		} else if(this.props.id === '2') {
 			return "blue"
 		}
+	};
+
+	onSettingClick = () => {
+		console.log(this.props);
+		this.props.history.push('/settings');
 	};
 	 
 	render() {
@@ -48,10 +58,10 @@ export default class Card extends React.Component {
 				<div className="card">
 					<div className="content">
 						<div className="right floated mini ui header">
-							{`${temp} \u2103`}
+							<span className="temp-header">{`${temp} \u2103`}</span>	
 						</div>
-						<div className="header">{this.props.title}</div>
-						<div className="meta">Salon na górze</div>
+						<div className="header">{this.props.name}</div>
+						<div className="meta">ID czujnika: {this.props.id}</div>
 						<div className="description">
 							Wilgotność: {`${hum}%`} <br/>
 							<span className="max-data">
@@ -68,7 +78,7 @@ export default class Card extends React.Component {
 							<div className="right floated top-margin">
 								<Link to={`/chart/temp/${this.props.id}`} className="ui purple button">Wykres</Link>
 							</div>
-							<div className="left floated">
+							<div onClick={this.onSettingClick} className="left floated">
 								<div className={`dot-${this.dotColor()}`}></div>
 							</div>
 						</div>
@@ -77,3 +87,11 @@ export default class Card extends React.Component {
 		);
 	};
 }
+
+const mapStateToProps = (state) =>{
+	return {
+		names: state.names
+	};
+};
+
+export default connect(mapStateToProps, { fetchName })(Card);

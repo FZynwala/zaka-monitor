@@ -1,30 +1,49 @@
-import './Modal.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Chart from './chart';
+import { connect } from 'react-redux';
+import { Field, reduxForm } from 'redux-form';
 
-const Modal = props => {
-    const tempTitle = 'Temperatura w \u2103';
-    const humTitle = 'Wilgotność w %';
-    console.log(props);
+import { postName } from '../actions';
 
-    return ReactDOM.createPortal(
-        <div onClick={props.onDismiss} className="ui dimmer modals visible active">
-            <div onClick={(e) => e.stopPropagation()} className="ui standard modal visible active">
-                <div className="header">Wykres</div>
-                <div className="content">
-                    <div className="chart-title">
-                        <h4>{props.type === 'temp' ? tempTitle : humTitle}</h4>
-                    </div>
-                    <Chart temp={props.yData} time={props.xData} />
-                </div>
-                <div className="actions">
-                    {props.actions}
-                </div>
+class Modal extends React.Component {
+    renderInput({ input, label }) {
+        return (
+            <div className="field">
+                <label>{label}</label>
+                <input {...input} />
             </div>
-        </div>,
-        document.querySelector('#modal')
-    );
-};
+        );
+    }
 
-export default Modal;
+    onSubmit = async (formValues) => {
+        console.log(formValues);
+        await this.props.postName(formValues);
+
+        this.props.history.push('/');
+    };
+
+   
+    render() {
+        return ReactDOM.createPortal(
+            <div onClick={this.props.onDismiss} className="ui dimmer modals visible active">
+                <div onClick={(e) => e.stopPropagation()} className="ui standard modal visible active">
+                    <div className="header">Zmień nazwę czujnika</div>
+                    <div className="content">
+                        <form onSubmit={this.props.handleSubmit(this.onSubmit)} className="ui form">
+                            <Field name="name1" component={this.renderInput} label="Nazwa czujnika 1:" />
+                            <Field name="name2" component={this.renderInput} label="Nazwa czujnika 2:" />
+                            <div className="actions">
+                                <button className="ui black button">Zapisz</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>,
+            document.querySelector('#modal')
+        );
+    }
+}
+
+export default reduxForm({
+    form: 'sensorsNames'
+})(connect(null, { postName })(Modal));
