@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/zaka-monitor/static/css/main.8fda23da.chunk.css",
-    "main.js": "/zaka-monitor/static/js/main.a388ec89.chunk.js",
-    "main.js.map": "/zaka-monitor/static/js/main.a388ec89.chunk.js.map",
+    "main.js": "/zaka-monitor/static/js/main.fcdb98c3.chunk.js",
+    "main.js.map": "/zaka-monitor/static/js/main.fcdb98c3.chunk.js.map",
     "runtime-main.js": "/zaka-monitor/static/js/runtime-main.1a31176a.js",
     "runtime-main.js.map": "/zaka-monitor/static/js/runtime-main.1a31176a.js.map",
     "static/js/2.46838cf4.chunk.js": "/zaka-monitor/static/js/2.46838cf4.chunk.js",
     "static/js/2.46838cf4.chunk.js.map": "/zaka-monitor/static/js/2.46838cf4.chunk.js.map",
     "index.html": "/zaka-monitor/index.html",
-    "precache-manifest.0ff4860abcffcad8d8bfeea1262dbbe8.js": "/zaka-monitor/precache-manifest.0ff4860abcffcad8d8bfeea1262dbbe8.js",
+    "precache-manifest.06513eb33f31bf2e9fcb39ac10d20d39.js": "/zaka-monitor/precache-manifest.06513eb33f31bf2e9fcb39ac10d20d39.js",
     "service-worker.js": "/zaka-monitor/service-worker.js",
     "static/css/main.8fda23da.chunk.css.map": "/zaka-monitor/static/css/main.8fda23da.chunk.css.map",
     "static/js/2.46838cf4.chunk.js.LICENSE": "/zaka-monitor/static/js/2.46838cf4.chunk.js.LICENSE"
@@ -17,6 +17,6 @@
     "static/js/runtime-main.1a31176a.js",
     "static/js/2.46838cf4.chunk.js",
     "static/css/main.8fda23da.chunk.css",
-    "static/js/main.a388ec89.chunk.js"
+    "static/js/main.fcdb98c3.chunk.js"
   ]
 }
