@@ -81,7 +81,7 @@ class Chart extends React.Component {
         ['screen and (max-width: 300px)', {
           axisX: {
             labelInterpolationFnc: function(value, index) {
-              return index % 25 === 0 ? value : null;
+              return index % 30 === 0 ? value : null;
             }
           }
         }],
