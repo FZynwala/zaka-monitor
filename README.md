@@ -15,9 +15,3 @@ Project is created with:
 * Mongoose
 ## Demo
 https://fzynwala.github.io/zaka-monitor/#/
-
-
-
-
-
-
