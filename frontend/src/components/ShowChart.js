@@ -4,59 +4,40 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import ChartModal from './ChartModal';
 import { fetchToday } from '../actions';
+import prepareData from '../prepareData';
 
 class ShowChart extends React.Component {
 
     prepareTempToChart = () => {
-        if(this.props.sensor01) {
+        if(this.props.today) {
             if(this.props.match.path === '/chart/temp/:id') {
+
 
                 if(this.props.match.params.id === '1') {
                     console.log('Hello from preapareTemp');
-                    let dataTemp = this.props.sensor01.map(obj => obj.temp);
-                    //let dataTime = this.props.sensor01.map(obj => obj.time);
-        
-                    return dataTemp;
+
+                    return prepareData(this.props.today.sensor01, this.props.yesterday.sensor01, 'temp');
+                
                 } else if(this.props.match.params.id === '2') {
-                    let dataTemp = this.props.sensor02.map(obj => obj.temp);
-                    //let dataTime = this.props.sensor02.map(obj => obj.time);
         
-                    return dataTemp;
+                    return prepareData(this.props.today.sensor02, this.props.yesterday.sensor02, 'temp');
                 }
             } else if(this.props.match.path === '/chart/hum/:id') {
 
                 if(this.props.match.params.id === '1') {
                     console.log('Hello from preapareHum');
-                    let dataTemp = this.props.sensor01.map(obj => obj.hum);
-                    //let dataTime = this.props.sensor01.map(obj => obj.time);
         
-                    return dataTemp;
-                } else if(this.props.match.params.id === '2') {
-                    let dataTemp = this.props.sensor02.map(obj => obj.hum);
-                    //let dataTime = this.props.sensor02.map(obj => obj.time);
-        
-                    return dataTemp;
-                }
-            }
-        }
-    };
+                    return prepareData(this.props.today.sensor01, this.props.yesterday.sensor01, 'hum');
 
-    prepareTimeToChart = () => {
-        if(this.props.sensor01) {
-            if(this.props.match.params.id === '1') {
-                let dataTime = this.props.sensor01.map(obj => obj.time);
-                
-                return dataTime;
-            } else if(this.props.match.params.id === '2') {
-                let dataTime = this.props.sensor02.map(obj => obj.time);
-    
-                return dataTime;
-            }
-        }
+                } else if(this.props.match.params.id === '2') {
+        
+                    return prepareData(this.props.today.sensor02, this.props.yesterday.sensor02, 'hum');
+                }
+            };
+        };
     };
 
     renderActions() {
-        const { id } = this.props.match.params;
 
         return (
             <React.Fragment>
@@ -67,23 +48,35 @@ class ShowChart extends React.Component {
     };
 
     render() {
-        console.log(this.props);
-        return (
-            <ChartModal 
-                xData={this.prepareTimeToChart()}
-                yData={this.prepareTempToChart()}
-                type={this.props.match.path === '/chart/temp/:id' ? 'temp' : 'hum'}
-                actions={this.renderActions()}
-                onDismiss={() => this.props.history.push("/")}
-            />
-        );
+        
+        if(this.props.today) {
+            return (
+                <ChartModal 
+                    xData={this.prepareTempToChart().dataTime}
+                    yData={this.prepareTempToChart().dataTemp}
+                    type={this.props.match.path === '/chart/temp/:id' ? 'temp' : 'hum'}
+                    actions={this.renderActions()}
+                    onDismiss={() => this.props.history.push("/")}
+                />
+            );
+        } else {
+            return (
+                <ChartModal 
+                    xData={null}
+                    yData={null}
+                    type={this.props.match.path === '/chart/temp/:id' ? 'temp' : 'hum'}
+                    actions={this.renderActions()}
+                    onDismiss={() => this.props.history.push("/")}
+                />
+            )
+        }
     };
 }
 
 const mapStateToProps = (state) => {
     return {
-        sensor01: state.data.sensor01,
-        sensor02: state.data.sensor02
+        today: state.data.today,
+        yesterday: state.data.yesterday
     }
 }
 

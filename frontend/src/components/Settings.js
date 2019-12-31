@@ -1,5 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import Modal from './Modal';
@@ -7,8 +6,6 @@ import Modal from './Modal';
 
 class Settings extends React.Component {
     renderActions() {
-        const { id } = this.props.match.params;
-
         return (
             <React.Fragment>
 			    <Link to={`/`} onClick={this.props.onSubmit} className="ui black button">Zapisz</Link>

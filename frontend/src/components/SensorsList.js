@@ -21,8 +21,7 @@ class SensorsList extends React.Component {
             const maxTemp02 = this.props.maxTemp.sensor02;
             const minTemp01 = this.props.minTemp.sensor01;
             const minTemp02 = this.props.minTemp.sensor02;
-            console.log(maxTemp01);
-            console.log(tempB);
+            
             return { tempA, tempB, maxTemp01, maxTemp02, minTemp01, minTemp02 }
         } 
         return 'Loading'
@@ -36,17 +35,14 @@ class SensorsList extends React.Component {
         });
     };
 
-    renderNames() {
-		console.log(this.props.names);
+    renderNames() {		
 		if(this.props.names.a) {
-			console.log(this.props.names);
 			const name1 = this.props.names.a.name;
 			const name2 = this.props.names.b.name;
 
 			return { name1, name2 };
 			
 		} else {
-			console.log(this.props.names);
 			
 			return 'Loading...';
 		}
@@ -54,7 +50,6 @@ class SensorsList extends React.Component {
 	};
 
     render() {
-        console.log(this.props);
         return (
             <div className="ui cards">
                 <Card data={this.renderData().tempA} maxTemp={this.renderData().maxTemp01} minTemp={this.renderData().minTemp01} title='Sensor A' id='1' history={this.props.history} name={this.renderNames().name1} />
@@ -66,14 +61,19 @@ class SensorsList extends React.Component {
 
 
 const mapStateToProps = (state) => {
-    console.log(state);
-    return {
-        sensor01: state.data.sensor01,
-        sensor02: state.data.sensor02,
-        maxTemp: state.data.maxTemp,
-        minTemp: state.data.minTemp,
-        names: state.names
-    };
+    if(state.data.today) {
+        return {
+            sensor01: state.data.today.sensor01,
+            sensor02: state.data.today.sensor02,
+            maxTemp: state.data.today.maxTemp,
+            minTemp: state.data.today.minTemp,
+            names: state.names
+        };
+    } else {
+        return {
+            names: state.names
+        }
+    }
 };
 
 export default connect(mapStateToProps, { fetchToday, fetchName })(SensorsList);

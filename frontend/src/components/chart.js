@@ -4,9 +4,6 @@ import Chartist from 'chartist';
 
 class Chart extends React.Component {
     componentDidMount() {
-
-      console.log(this.props.time);
-      console.log(this.props.temp);
       
         var data = {
             // A labels array that can contain any sort of values
@@ -58,12 +55,8 @@ class Chart extends React.Component {
     };
 
     componentDidUpdate() {
-      console.log(this.props.time);
-      console.log(this.props.temp);
       var data = {
-        // A labels array that can contain any sort of values
         labels: this.props.time,
-        // Our series array that contains series objects or in this case series data arrays
         series: [this.props.temp]
       };
 

@@ -7,15 +7,11 @@ import { fetchName } from '../actions';
 
 
 class Card extends React.Component {
-	componentDidMount() {
-		//this.props.fetchName();
-	};
 
 	renderMaxTemp = () => {
 		if(this.props.maxTemp) {
 			var maxTemp = this.props.maxTemp.maxTemp;
 			var time = this.props.maxTemp.time;
-			console.log(this.props.maxTemp.maxTemp);
 			return { maxTemp, time }
 		}
 
@@ -26,7 +22,6 @@ class Card extends React.Component {
 		if(this.props.minTemp) {
 			var minTemp = this.props.minTemp.minTemp;
 			var time = this.props.minTemp.time;
-			console.log(this.props.minTemp.minTemp);
 			return { minTemp, time }
 		}
 
@@ -42,18 +37,14 @@ class Card extends React.Component {
 	};
 
 	onSettingClick = () => {
-		console.log(this.props);
 		this.props.history.push('/settings');
 	};
 	 
 	render() {
 		if(this.props.data) {
-			var { temp, time, hum } = this.props.data;
-			
+			var { temp, time, hum } = this.props.data;	
 		}
 		
-		
-
 		return (
 				<div className="card">
 					<div className="content">
