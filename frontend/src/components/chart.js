@@ -27,7 +27,7 @@ class Chart extends React.Component {
               }
             },
             axisY: {
-              offset: 60
+              offset: 25
             }
           }, [
             ['screen and (max-width: 300px)', {
@@ -75,7 +75,7 @@ class Chart extends React.Component {
           }
         },
         axisY: {
-          offset: 60
+          offset: 25
         }
       }, [
         ['screen and (max-width: 300px)', {
