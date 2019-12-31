@@ -11,7 +11,7 @@ const ChartModal = props => {
     return ReactDOM.createPortal(
         <div onClick={props.onDismiss} className="ui dimmer modals visible active">
             <div onClick={(e) => e.stopPropagation()} className="ui standard modal visible active">
-                <div className="header">Wykres</div>
+                <div className="header">Wykres - ostatnie 24h</div>
                 <div className="content">
                     <div className="chart-title">
                         <h4>{props.type === 'temp' ? tempTitle : humTitle}</h4>
