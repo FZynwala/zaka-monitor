@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/zaka-monitor/precache-manifest.06513eb33f31bf2e9fcb39ac10d20d39.js"
+  "/zaka-monitor/precache-manifest.761bed7e4288a3f65db749eec66a30f0.js"
 );
 
 self.addEventListener('message', (event) => {
