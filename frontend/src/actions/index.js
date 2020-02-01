@@ -3,7 +3,7 @@ import { FETCH_TODAY, FETCH_NAME, POST_NAME } from './types';
 
 export const fetchToday = () => async dispatch => {
     const response = await data.get('/');
-
+    console.log(response.data);
     dispatch({ type: FETCH_TODAY, payload: response.data });
 };
 
