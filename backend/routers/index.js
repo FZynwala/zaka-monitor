@@ -91,15 +91,39 @@ router.post('/:temp/:humidity/:id', async (req, res) => {
 });
 
 router.get('/', async (req, res) => {
-    const day = await dayModel.Day.findOne({date: moment(new Date()).format('l')});
-    const response = { 
-        sensor01: day.sensor01, 
-        sensor02: day.sensor02,
-        maxTemp: day.maxTemp,
-        minTemp: day.minTemp 
-    };
+    const yDate = new Date();
+    yDate.setDate(yDate.getDate() - 1);
 
-    if(!day) {
+    const today = await dayModel.Day.findOne({date: moment(new Date()).format('l')});
+    const yesterday = await dayModel.Day.findOne({date: moment(yDate).format('l')});
+
+    if(today && yesterday) {
+        var response = {
+            today: {
+                sensor01: today.sensor01, 
+                sensor02: today.sensor02,
+                maxTemp: today.maxTemp,
+                minTemp: today.minTemp 
+            },
+            yesterday: {
+                sensor01: yesterday.sensor01, 
+                sensor02: yesterday.sensor02,
+                maxTemp: yesterday.maxTemp,
+                minTemp: yesterday.minTemp
+            } 
+        };
+    } else if(today) {
+        response = {
+            today: {
+                sensor01: today.sensor01, 
+                sensor02: today.sensor02,
+                maxTemp: today.maxTemp,
+                minTemp: today.minTemp 
+            } 
+        }
+    }
+
+    if(!today) {
         res.status(404).send('There is no data');
     } else {
         res.send(response);
