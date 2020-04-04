@@ -1,7 +1,7 @@
 import './SensorList.css';
 import React from 'react';
 import { connect } from 'react-redux';
-import { fetchToday, fetchName } from '../actions';
+import { fetchToday, fetchName, fetchCovid } from '../actions';
 import Sensor from './Sensor';
 import Card from './Card';
 
@@ -9,6 +9,7 @@ class SensorsList extends React.Component {
     componentDidMount() {
         this.props.fetchToday();
         this.props.fetchName();
+        this.props.fetchCovid();
     };
 
     renderData = () => {
@@ -77,4 +78,4 @@ const mapStateToProps = (state) => {
     }
 };
 
-export default connect(mapStateToProps, { fetchToday, fetchName })(SensorsList);
+export default connect(mapStateToProps, { fetchToday, fetchName, fetchCovid })(SensorsList);

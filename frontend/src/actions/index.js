@@ -1,4 +1,5 @@
 import data from '../api/data';
+import covid from '../api/covid';
 import { FETCH_TODAY, FETCH_NAME, POST_NAME } from './types';
 
 export const fetchToday = () => async dispatch => {
@@ -20,3 +21,8 @@ export const postName = (formValues) => async dispatch => {
     
     dispatch({ type: POST_NAME, payload: response.data });
 };
+
+export const fetchCovid = () => async dispatch => {
+    const response = await covid.get('/');
+    console.log(response);
+}
