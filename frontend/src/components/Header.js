@@ -2,11 +2,13 @@ import './Header.css';
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { fetchToday } from '../actions';
+import { fetchToday, fetchCovid, fetchCovidPoland } from '../actions';
 
 class Header extends React.Component {
     onFetchClick = () => {
         this.props.fetchToday();
+        this.props.fetchCovid();
+        this.props.fetchCovidPoland();
     };
 
     render() {
@@ -24,4 +26,4 @@ class Header extends React.Component {
     };
 }
 
-export default connect(null, { fetchToday })(Header);
+export default connect(null, { fetchToday, fetchCovid, fetchCovidPoland })(Header);

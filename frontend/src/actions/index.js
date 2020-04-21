@@ -1,6 +1,7 @@
 import data from '../api/data';
 import covid from '../api/covid';
-import { FETCH_TODAY, FETCH_NAME, POST_NAME } from './types';
+import { FETCH_TODAY, FETCH_NAME, POST_NAME, FETCH_COVID, FETCH_COVID_PL } from './types';
+import covidPoland from '../api/covidPoland';
 
 export const fetchToday = () => async dispatch => {
     const response = await data.get('/');
@@ -25,4 +26,13 @@ export const postName = (formValues) => async dispatch => {
 export const fetchCovid = () => async dispatch => {
     const response = await covid.get('/');
     console.log(response);
+
+    dispatch({ type: FETCH_COVID, payload: response.data });
+}
+
+export const fetchCovidPoland = () => async dispatch => {
+    const response = await covidPoland.get('/');
+    console.log(response);
+
+    dispatch({ type: FETCH_COVID_PL, payload: response.data });
 }

@@ -15,7 +15,7 @@ class Card extends React.Component {
 			return { maxTemp, time }
 		}
 
-		return 'Loding...'
+		return 'Loading...'
 	};
 
 	renderMinTemp = () => {
