@@ -11,6 +11,9 @@ const userSchema = new mongoose.Schema({
     sensor02: {
         type: []
     },
+    sensor03: {
+        type: []
+    },
     maxTemp: {
         type: {
             sensor01: {},
