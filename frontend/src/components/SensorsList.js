@@ -5,6 +5,7 @@ import { fetchToday, fetchName, fetchCovid, fetchCovidPoland } from '../actions'
 import Sensor from './Sensor';
 import Card from './Card';
 import CardCovid from './CardCovid';
+import CardExtended from './CardExtended';
 
 class SensorsList extends React.Component {
     componentDidMount() {
@@ -16,16 +17,19 @@ class SensorsList extends React.Component {
 
     renderData = () => {
         if(this.props.maxTemp) {
-            const { sensor01, sensor02 } = this.props;
+            const { sensor01, sensor02, sensor03 } = this.props;
             
             const tempA = sensor01[sensor01.length-1];
             const tempB = sensor02[sensor02.length-1];
+            const tempC = sensor03[sensor03.length-1];
             const maxTemp01 = this.props.maxTemp.sensor01;
             const maxTemp02 = this.props.maxTemp.sensor02;
+            const maxTemp03 = this.props.maxTemp.sensor03;
             const minTemp01 = this.props.minTemp.sensor01;
             const minTemp02 = this.props.minTemp.sensor02;
+            const minTemp03 = this.props.minTemp.sensor03;
             
-            return { tempA, tempB, maxTemp01, maxTemp02, minTemp01, minTemp02 }
+            return { tempA, tempB, tempC, maxTemp01, maxTemp02, maxTemp03, minTemp01, minTemp02, minTemp03 }
         } 
         return 'Loading'
     };
@@ -57,6 +61,7 @@ class SensorsList extends React.Component {
             <div className="ui cards">
                 <Card data={this.renderData().tempA} maxTemp={this.renderData().maxTemp01} minTemp={this.renderData().minTemp01} title='Sensor A' id='1' history={this.props.history} name={this.renderNames().name1} />
                 <Card data={this.renderData().tempB} maxTemp={this.renderData().maxTemp02} minTemp={this.renderData().minTemp02} title='Sensor B' id='2' history={this.props.history} name={this.renderNames().name2} />
+                <CardExtended data={this.renderData().tempC} maxTemp={this.renderData().maxTemp03} minTemp={this.renderData().minTemp03} title='Sensor C' id='3' history={this.props.history} name="Garaz" />
                 <CardCovid/>
             </div>
         );
@@ -70,6 +75,7 @@ const mapStateToProps = (state) => {
         return {
             sensor01: state.data.today.sensor01,
             sensor02: state.data.today.sensor02,
+            sensor03: state.data.today.sensor03,
             maxTemp: state.data.today.maxTemp,
             minTemp: state.data.today.minTemp,
             names: state.names
