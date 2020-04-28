@@ -210,7 +210,7 @@ router.post('/s02/:temp/:humidity/:door', async (req, res) => {
     }
 });
 
-router.post('/s03/:temp/:humidity/:door', async (req, res) => {
+router.post('/s03/:temp/:humidity/:door/:light', async (req, res) => {
     console.log('Hello from POST 03');
     const foundDay = await dayModel.Day.findOne({date: moment(new Date()).tz('Europe/Warsaw').format('l')});
 
@@ -218,6 +218,7 @@ router.post('/s03/:temp/:humidity/:door', async (req, res) => {
         temp: req.params.temp,
         hum: req.params.humidity,
         isOpen: Boolean(Number(req.params.door)),
+        isLight: Boolean(Number(req.params.light)),
         time: moment(new Date()).tz('Europe/Warsaw').format('LT')
     };
 
@@ -282,12 +283,14 @@ router.get('/', async (req, res) => {
             today: {
                 sensor01: today.sensor01, 
                 sensor02: today.sensor02,
+                sensor03: today.sensor03,
                 maxTemp: today.maxTemp,
                 minTemp: today.minTemp 
             },
             yesterday: {
                 sensor01: yesterday.sensor01, 
                 sensor02: yesterday.sensor02,
+                sensor03: yesterday.sensor03,
                 maxTemp: yesterday.maxTemp,
                 minTemp: yesterday.minTemp
             } 
@@ -297,6 +300,7 @@ router.get('/', async (req, res) => {
             today: {
                 sensor01: today.sensor01, 
                 sensor02: today.sensor02,
+                sensor03: today.sensor03,
                 maxTemp: today.maxTemp,
                 minTemp: today.minTemp 
             } 
