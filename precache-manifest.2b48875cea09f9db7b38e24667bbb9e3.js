@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "adb8e8db19eda36e04facc9be683a8ba",
+    "revision": "3e407380898cbfda9c2d46511177eca1",
     "url": "/zaka-monitor/index.html"
   },
   {
-    "revision": "64bb04637e677f47a18e",
+    "revision": "afa4ff33445e405cb917",
     "url": "/zaka-monitor/static/css/main.cbebf1f5.chunk.css"
   },
   {
-    "revision": "50dbbd9373523669bea7",
-    "url": "/zaka-monitor/static/js/2.676b3798.chunk.js"
+    "revision": "5514a639a864e707e4b0",
+    "url": "/zaka-monitor/static/js/2.6c0a3a62.chunk.js"
   },
   {
     "revision": "602d605ef36bc3acd02f8329d01a8800",
-    "url": "/zaka-monitor/static/js/2.676b3798.chunk.js.LICENSE.txt"
+    "url": "/zaka-monitor/static/js/2.6c0a3a62.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "64bb04637e677f47a18e",
-    "url": "/zaka-monitor/static/js/main.e4569c66.chunk.js"
+    "revision": "afa4ff33445e405cb917",
+    "url": "/zaka-monitor/static/js/main.b09b9915.chunk.js"
   },
   {
     "revision": "cfd4b6c8bc87dd4e6217",
