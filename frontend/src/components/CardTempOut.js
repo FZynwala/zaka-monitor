@@ -33,9 +33,9 @@ class Card extends React.Component {
 			return "yellow";
 		} else if(this.props.id === '2') {
 			return "blue"
-		} else if(this.props.id === '3') {
+		} else if(this.props.id === '3' || this.props.id === '4') {
             return "black"
-        }
+        } 
 	};
 
 	onSettingClick = () => {
