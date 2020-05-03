@@ -26,23 +26,6 @@ class Card extends React.Component {
 		}
 
 		return 'Loding...'
-    };
-    
-    renderDoor = () => {
-        if(this.props.data)
-            return this.props.data.isOpen ? "otwarte" : "zamknięte";
-    };
-
-    renderIsLightOn = () => {
-        if(this.props.data) {
-            return  this.props.data.isLight ? "ON" : "OFF";
-        };
-	};
-	
-	renderTempOutdoor = () => {
-		if(this.props.data) {
-			return this.props.data.tempOut;
-		};
 	};
 
 	dotColor = () => {
@@ -51,8 +34,8 @@ class Card extends React.Component {
 		} else if(this.props.id === '2') {
 			return "blue"
 		} else if(this.props.id === '3') {
-			return "black"
-		}
+            return "black"
+        }
 	};
 
 	onSettingClick = () => {
@@ -60,10 +43,10 @@ class Card extends React.Component {
 	};
 	 
 	render() {
+        console.log(this.props);
 		if(this.props.data) {
 			var { temp, time, hum } = this.props.data;	
-        }
-        console.log(this.props);
+		}
 		
 		return (
 				<div className="card">
@@ -71,10 +54,9 @@ class Card extends React.Component {
 						<div className="right floated mini ui header">
 							<span className="temp-header">{`${temp} \u2103`}</span>	
 						</div>
-						<div className="header">Garaż</div>
+						<div className="header">Na zewnątrz:</div>
 						<div className="meta">ID czujnika: {this.props.id}</div>
 						<div className="description">
-							Wilgotność: {`${hum}%`} <br/>
 							<span className="max-data">
 								Max: {`${this.renderMaxTemp().maxTemp} \u2103`} 
 								<span className="time">o godz: {`${this.renderMaxTemp().time}`} </span><br/>
@@ -83,9 +65,6 @@ class Card extends React.Component {
 								Min: {`${this.renderMinTemp().minTemp} \u2103`} 
 								<span className="time">o godz: {`${this.renderMinTemp().time}`} </span><br/>
 							</span>
-                            Drzwi: {this.renderDoor()} <br/>
-                            Światło: {this.renderIsLightOn()} <br/>
-							Temp. na zew.: {this.renderTempOutdoor()} <br/>
 							Czas: {`${time}`} <br/>
 						</div>
 						<div className="extra content">

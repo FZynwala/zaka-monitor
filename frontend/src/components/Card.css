@@ -36,6 +36,14 @@
     background-color: #1890ff;
 }
 
+.dot-black {
+    border-radius: 9999px;
+    width: 20px;
+    height: 20px;
+    margin-top: 15px;
+    background-color: #0a0e12;
+}
+
 .temp-header {
     font-size: 26px;
 }
