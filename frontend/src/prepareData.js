@@ -1,5 +1,5 @@
 export default (tSensor, ySensor, param) => {
-    console.log(tSensor);
+    
     if(tSensor) {
         const current = tSensor[tSensor.length - 1];
         const tTime = current.time;

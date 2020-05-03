@@ -63,7 +63,6 @@ class Card extends React.Component {
 		if(this.props.data) {
 			var { temp, time, hum } = this.props.data;	
         }
-        console.log(this.props);
 		
 		return (
 				<div className="card">
