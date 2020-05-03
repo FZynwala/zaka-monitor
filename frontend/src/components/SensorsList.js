@@ -73,7 +73,6 @@ class SensorsList extends React.Component {
 
 
 const mapStateToProps = (state) => {
-    console.log(state.data.today);
     if(state.data.today) {
         return {
             sensor01: state.data.today.sensor01,

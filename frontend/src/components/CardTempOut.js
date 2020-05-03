@@ -43,7 +43,6 @@ class Card extends React.Component {
 	};
 	 
 	render() {
-        console.log(this.props);
 		if(this.props.data) {
 			var { tempOut, time } = this.props.data;	
 		}
