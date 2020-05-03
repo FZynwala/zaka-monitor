@@ -37,7 +37,13 @@ class Card extends React.Component {
         if(this.props.data) {
             return  this.props.data.isLight ? "ON" : "OFF";
         };
-    };
+	};
+	
+	renderTempOutdoor = () => {
+		if(this.props.data) {
+			return this.props.data.tempOut;
+		};
+	};
 
 	dotColor = () => {
 		if(this.props.id === '1') {
@@ -77,6 +83,7 @@ class Card extends React.Component {
 							</span>
                             Drzwi: {this.renderDoor()} <br/>
                             Światło: {this.renderIsLightOn()} <br/>
+							Temp. na zew.: {this.renderTempOutdoor()} <br/>
 							Czas: {`${time}`} <br/>
 						</div>
 						<div className="extra content">
