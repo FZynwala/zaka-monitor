@@ -85,7 +85,6 @@ class Card extends React.Component {
 							</span>
                             Drzwi: {this.renderDoor()} <br/>
                             Światło: {this.renderIsLightOn()} <br/>
-							Temp. na zew.: {this.renderTempOutdoor()} <br/>
 							Czas: {`${time}`} <br/>
 						</div>
 						<div className="extra content">

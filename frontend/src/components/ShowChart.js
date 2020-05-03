@@ -21,6 +21,12 @@ class ShowChart extends React.Component {
                 } else if(this.props.match.params.id === '2') {
         
                     return prepareData(this.props.today.sensor02, this.props.yesterday.sensor02, 'temp');
+                } else if(this.props.match.params.id === '3') {
+
+                    return prepareData(this.props.today.sensor03, this.props.yesterday.sensor03, 'temp');
+                } else if(this.props.match.params.id === '4') {
+
+                    return prepareData(this.props.today.sensor03, this.props.yesterday.sensor03, 'tempOut');
                 }
             } else if(this.props.match.path === '/chart/hum/:id') {
 
@@ -32,13 +38,22 @@ class ShowChart extends React.Component {
                 } else if(this.props.match.params.id === '2') {
         
                     return prepareData(this.props.today.sensor02, this.props.yesterday.sensor02, 'hum');
+                } else if(this.props.match.params.id === '3') {
+
+                    return prepareData(this.props.today.sensor03, this.props.yesterday.sensor03, 'hum');
                 }
             };
         };
     };
 
     renderActions() {
-
+        if(this.props.match.params.id === '4') {
+            return (
+                <React.Fragment>
+                    <Link to='/' className="ui purple button">Wróć</Link>
+                </React.Fragment>
+            )    
+        }
         return (
             <React.Fragment>
 			    <Link to={`/chart/temp/${this.props.match.params.id}`} className="ui purple button">Temperatura</Link>

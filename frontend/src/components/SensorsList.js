@@ -65,7 +65,7 @@ class SensorsList extends React.Component {
                 <Card data={this.renderData().tempA} maxTemp={this.renderData().maxTemp01} minTemp={this.renderData().minTemp01} title='Sensor A' id='1' history={this.props.history} name={this.renderNames().name1} />
                 <Card data={this.renderData().tempB} maxTemp={this.renderData().maxTemp02} minTemp={this.renderData().minTemp02} title='Sensor B' id='2' history={this.props.history} name={this.renderNames().name2} />
                 <CardExtended data={this.renderData().tempC} maxTemp={this.renderData().maxTemp03} minTemp={this.renderData().minTemp03} title='Sensor C' id='3' history={this.props.history} name="Garaz" />
-                <CardTempOut data={this.renderData().tempC} maxTemp={this.renderData().maxTempOut} minTemp={this.renderData().minTempOut} id='3' history={this.props.history} />
+                <CardTempOut data={this.renderData().tempC} maxTemp={this.renderData().maxTempOut} minTemp={this.renderData().minTempOut} id='4' history={this.props.history} />
             </div>
         );
     };

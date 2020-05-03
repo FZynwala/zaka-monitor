@@ -45,14 +45,14 @@ class Card extends React.Component {
 	render() {
         console.log(this.props);
 		if(this.props.data) {
-			var { temp, time, hum } = this.props.data;	
+			var { tempOut, time } = this.props.data;	
 		}
 		
 		return (
 				<div className="card">
 					<div className="content">
 						<div className="right floated mini ui header">
-							<span className="temp-header">{`${temp} \u2103`}</span>	
+							<span className="temp-header">{`${tempOut} \u2103`}</span>	
 						</div>
 						<div className="header">Na zewnątrz:</div>
 						<div className="meta">ID czujnika: {this.props.id}</div>
