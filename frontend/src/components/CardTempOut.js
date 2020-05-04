@@ -3,8 +3,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import { fetchName } from '../actions';
-
 
 class Card extends React.Component {
 
@@ -86,4 +84,4 @@ const mapStateToProps = (state) =>{
 	};
 };
 
-export default connect(mapStateToProps, { fetchName })(Card);
+export default connect(mapStateToProps)(Card);

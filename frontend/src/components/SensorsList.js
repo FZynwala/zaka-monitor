@@ -12,7 +12,7 @@ class SensorsList extends React.Component {
     componentDidMount() {
         this.props.fetchToday();
         this.props.fetchName();
-        this.props.fetchCovid();
+        //this.props.fetchCovid();
         this.props.fetchCovidPoland();
     };
 
