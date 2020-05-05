@@ -2,7 +2,6 @@ import './SensorList.css';
 import React from 'react';
 import { connect } from 'react-redux';
 import { fetchToday, fetchName, fetchCovid, fetchCovidPoland } from '../actions';
-import Sensor from './Sensor';
 import Card from './Card';
 import CardCovid from './CardCovid';
 import CardExtended from './CardExtended';
@@ -36,14 +35,14 @@ class SensorsList extends React.Component {
         } 
         return 'Loading'
     };
-
+/*
     renderSensor = () => {
         this.props.sensor01.map(data => {
             return (
                 <Sensor data={this.renderData()} />
             );
         });
-    };
+    };*/
 
     renderNames() {		
 		if(this.props.names.a) {
