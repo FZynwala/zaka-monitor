@@ -6,6 +6,7 @@ import Card from './Card';
 import CardCovid from './CardCovid';
 import CardExtended from './CardExtended';
 import CardTempOut from './CardTempOut';
+import SideMenu from './SideMenu';
 
 class SensorsList extends React.Component {
     componentDidMount() {

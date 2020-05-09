@@ -4,3 +4,5 @@ export const FETCH_NAME = 'FETCH_NAME';
 export const POST_NAME = 'POST_NAME';
 export const FETCH_COVID = 'FETCH_COVID';
 export const FETCH_COVID_PL = 'FETCH_COVID_PL';
+export const SHOW_MENU = 'SHOW_MENU';
+export const HIDE_MENU = 'HIDE_MENU';

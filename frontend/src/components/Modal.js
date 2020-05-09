@@ -41,8 +41,8 @@ class Modal extends React.Component {
             </div>,
             document.querySelector('#modal')
         );
-    }
-}
+    };
+};
 
 export default reduxForm({
     form: 'sensorsNames'
