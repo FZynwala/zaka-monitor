@@ -5,7 +5,7 @@
     width: 50%;
     height: 100vh;
     z-index: 200;
-    background-color: brown;
+    background-color: #111619;
 }
 
 .backdrop {
@@ -24,4 +24,10 @@
 
 .hide {
     display: none;
+}
+
+#btn-m {
+    width: 100%;
+    background: transparent;
+    color: #7e97ab;
 }

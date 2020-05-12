@@ -1,6 +1,6 @@
 import data from '../api/data';
 import covid from '../api/covid';
-import { FETCH_TODAY, FETCH_NAME, POST_NAME, FETCH_COVID, FETCH_COVID_PL, SHOW_MENU, HIDE_MENU } from './types';
+import { FETCH_TODAY, FETCH_NAME, POST_NAME, FETCH_COVID, FETCH_COVID_PL, SHOW_MENU, HIDE_MENU, MAIN_COLOR } from './types';
 import covidPoland from '../api/covidPoland';
 
 export const fetchToday = () => async dispatch => {
@@ -48,5 +48,12 @@ export const hideMenu = () => {
     return {
         type: HIDE_MENU,
         payload: "hide"
+    }
+}
+
+export const changeColor = (color) => {
+    return {
+        type: MAIN_COLOR,
+        payload: color
     }
 }

@@ -1,4 +1,5 @@
 import './SensorList.css';
+import './ColorPicker.css';
 import React from 'react';
 import { connect } from 'react-redux';
 import { fetchToday, fetchName, fetchCovid, fetchCovidPoland } from '../actions';
@@ -9,6 +10,8 @@ import CardTempOut from './CardTempOut';
 import SideMenu from './SideMenu';
 
 class SensorsList extends React.Component {
+    color = "black-pearl";
+    
     componentDidMount() {
         this.props.fetchToday();
         this.props.fetchName();
@@ -61,7 +64,7 @@ class SensorsList extends React.Component {
 
     render() {
         return (
-            <div className="ui cards">
+            <div className={`ui cards ${this.props.color}`}>
                 <Card data={this.renderData().tempA} maxTemp={this.renderData().maxTemp01} minTemp={this.renderData().minTemp01} title='Sensor A' id='1' history={this.props.history} name={this.renderNames().name1} />
                 <Card data={this.renderData().tempB} maxTemp={this.renderData().maxTemp02} minTemp={this.renderData().minTemp02} title='Sensor B' id='2' history={this.props.history} name={this.renderNames().name2} />
                 <CardExtended data={this.renderData().tempC} maxTemp={this.renderData().maxTemp03} minTemp={this.renderData().minTemp03} title='Sensor C' id='3' history={this.props.history} name="Garaz" />
@@ -80,11 +83,13 @@ const mapStateToProps = (state) => {
             sensor03: state.data.today.sensor03,
             maxTemp: state.data.today.maxTemp,
             minTemp: state.data.today.minTemp,
-            names: state.names
+            names: state.names,
+            color: state.color.color
         };
     } else {
         return {
-            names: state.names
+            names: state.names,
+            color: state.color.color
         }
     }
 };

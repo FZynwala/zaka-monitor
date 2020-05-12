@@ -16,12 +16,8 @@ class Header extends React.Component {
 
     onMenuClick = () => {
         this.props.showMenu();
-        console.log(this.display === true);
     }
 
-    // prepareDispToProps = () => {
-    //     return this.display === true ? 'show' : 'hide';
-    // }
 
     render() {
         console.log(this.display === true);

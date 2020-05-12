@@ -6,3 +6,4 @@ export const FETCH_COVID = 'FETCH_COVID';
 export const FETCH_COVID_PL = 'FETCH_COVID_PL';
 export const SHOW_MENU = 'SHOW_MENU';
 export const HIDE_MENU = 'HIDE_MENU';
+export const MAIN_COLOR = 'MAIN_COLOR';

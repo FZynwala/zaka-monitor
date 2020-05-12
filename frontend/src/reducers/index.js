@@ -4,11 +4,13 @@ import fetchDayReducer from './fetchDayReducer';
 import sensorNamesReducer from './sensorNamesReducer';
 import fetchCovidReducer from './fetchCovidReducer';
 import menuReducer from './menuReducer';
+import mainColorReducer from './mainColorReducer';
 
 export default combineReducers({
     data: fetchDayReducer,
     covid: fetchCovidReducer,
     form: formReducer,
     names: sensorNamesReducer,
-    menu: menuReducer
+    menu: menuReducer,
+    color: mainColorReducer
 });

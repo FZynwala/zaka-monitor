@@ -8,6 +8,8 @@ import SensorsList from './SensorsList';
 import { fetchToday } from '../actions';
 import ShowChart from './ShowChart';
 import Settings from './Settings';
+import ColorPicker from './ColorPicker';
+import chartsMenu from './chartsMenu';
 
 class App extends React.Component {
     componentDidMount() {
@@ -17,12 +19,14 @@ class App extends React.Component {
     render() {
         return (
             <div>
-                <Header />
                 <HashRouter>
+                    <Header />
                     <Route path="/" exact component={SensorsList} />
                     <Route path="/chart/temp/:id" exact component={ShowChart} />
                     <Route path="/chart/hum/:id" exact component={ShowChart} />
                     <Route path="/settings" exact component={Settings} />
+                    <Route path="/colors" exact component={ColorPicker} />
+                    <Route path="/charts" exact component={chartsMenu} />
                 </HashRouter>
             </div>
         );
