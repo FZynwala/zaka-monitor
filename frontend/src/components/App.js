@@ -10,6 +10,7 @@ import ShowChart from './ShowChart';
 import Settings from './Settings';
 import ColorPicker from './ColorPicker';
 import chartsMenu from './chartsMenu';
+import Notifications from './Notifications';
 
 class App extends React.Component {
     componentDidMount() {
@@ -27,6 +28,7 @@ class App extends React.Component {
                     <Route path="/settings" exact component={Settings} />
                     <Route path="/colors" exact component={ColorPicker} />
                     <Route path="/charts" exact component={chartsMenu} />
+                    <Route path="/notifications" exact component={Notifications} />
                 </HashRouter>
             </div>
         );

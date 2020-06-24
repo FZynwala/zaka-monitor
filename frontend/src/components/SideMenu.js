@@ -24,8 +24,7 @@ class SideMenu extends React.Component {
                     <div className="ui vertical buttons" id="btn-m">
                         <Link to="/colors" onClick={this.onMenuItemClick} className="ui button" id="btn-m">Kolor</Link>
                         <Link to="/charts" onClick={this.onMenuItemClick} className="ui button" id="btn-m">Wykresy</Link>
-                        <button className="ui button" id="btn-m">Events</button>
-                        <button className="ui button" id="btn-m">Photos</button>
+                        <Link to="/notifications" onClick={this.onMenuItemClick} className="ui button" id="btn-m">Powiadomienia</Link>
                     </div>
                 </div>
             </React.Fragment>

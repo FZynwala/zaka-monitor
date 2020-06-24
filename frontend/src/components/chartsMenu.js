@@ -12,11 +12,13 @@ class ColorPicker extends React.Component {
     
     renderOptions = () => {
         let i = 0;
-        const sensors = [this.props.sensorsNames.a.name, this.props.sensorsNames.b.name, "Garaż", "Na zewnątrz" ];
-        return sensors.map(sensor => {
-            i++;
-            return <option value={i}>{sensor}</option>
-        });
+        if(this.props.sensorsNames.a) {
+            const sensors = [this.props.sensorsNames.a.name, this.props.sensorsNames.b.name, "Garaż", "Na zewnątrz" ];
+            return sensors.map(sensor => {
+                i++;
+                return <option value={i}>{sensor}</option>
+            });
+        }
     };
 
     renderInput = ({ input, label }) => {
