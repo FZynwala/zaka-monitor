@@ -5,6 +5,9 @@ require('moment/locale/pl.js');
 const dayModel = require("../models/dayModel");
 const sensorModel = require("../models/sensorModel");
 
+process.env.AWS_SDK_LOAD_CONFIG = true;
+var AWS = require("aws-sdk");
+
 const router = express.Router();
 /*
 router.post('/:temp/:humidity/:id', async (req, res) => {
@@ -369,6 +372,46 @@ router.post('/sensor', async (req, res) => {
         console.log(result);
         res.send(result);
     }
+});
+
+router.post('/notifications', async (req, res) => {
+    var params = {
+        Message: 'hello from zaka-monitor', /* required */
+        TopicArn: 'arn:aws:sns:eu-central-1:666702137936:temp-alert'
+    };
+      
+    // Create promise and SNS service object
+    var publishTextPromise = new AWS.SNS({apiVersion: '2010-03-31'}).publish(params).promise();
+
+    publishTextPromise.then(
+        function(data) {
+          console.log(`Message ${params.Message} send sent to the topic ${params.TopicArn}`);
+          console.log("MessageID is " + data.MessageId);
+          res.send(params.Message);
+    }).catch(
+          function(err) {
+          console.error(err, err.stack);
+    });
+});
+
+router.post('/subscribe', async (req, res) => {
+    var params = {
+        Protocol: 'SMS', /* required */
+        TopicArn: 'arn:aws:sns:eu-central-1:666702137936:temp-alert', /* required */
+        Endpoint: '601158633'
+      };
+      
+    // Create promise and SNS service object
+    var subscribePromise = new AWS.SNS({apiVersion: '2010-03-31'}).subscribe(params).promise();
+
+    subscribePromise.then(
+        function(data) {
+          console.log("Subscription ARN is " + data.SubscriptionArn);
+          res.send(params.Endpoint);
+        }).catch(
+          function(err) {
+          console.error(err, err.stack);
+        });
 });
 
 module.exports = router;
