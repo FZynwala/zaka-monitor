@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const herokuURL = 'https://enigmatic-hamlet-94586.herokuapp.com/';
+const herokuURL = 'https://morning-fjord-81682.herokuapp.com/';
 const localhost = 'http://localhost:8000';
 
 export default axios.create({

@@ -7,7 +7,7 @@ const connectdb = require('./connectDB');
 const days = require('./routers/index');
 
 const app = express();
-console.log('hello szokobounce');
+
 require('./prod')(app);
 connectdb.connectToDB();
 
