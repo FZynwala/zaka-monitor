@@ -4,9 +4,15 @@ const tz = require('moment-timezone');
 require('moment/locale/pl.js');
 const dayModel = require("../models/dayModel");
 const sensorModel = require("../models/sensorModel");
+const { Alert } = require('../models/alertModel');
+const { isTopic } = require('../helper_functions/isTopic');
+const { createTopic } = require('../helper_functions/createTopic');
+const { checkAlert } = require('../helper_functions/checkAlert');
+const { sendMessage } = require('../helper_functions/sendMessage');
 
-process.env.AWS_SDK_LOAD_CONFIG = true;
+
 var AWS = require("aws-sdk");
+AWS.config.update({region: 'eu-central-1'});
 
 const router = express.Router();
 /*
@@ -102,6 +108,17 @@ router.post('/s01/:temp/:humidity', async (req, res) => {
         temp: req.params.temp,
         hum: req.params.humidity,
         time: moment(new Date()).tz('Europe/Warsaw').format('LT')
+    };
+
+    const alerts = await checkAlert('Gora');
+    console.log(alerts);
+    if(alerts) {
+        alerts.forEach( alert => {
+            if(data[alert.parameter] > alert.value) {
+                console.log('Sending alert!');
+                sendMessage(alert, data);
+            };
+        });
     };
     
     if(!foundDay) {
@@ -395,23 +412,42 @@ router.post('/notifications', async (req, res) => {
 });
 
 router.post('/subscribe', async (req, res) => {
-    var params = {
-        Protocol: 'SMS', /* required */
-        TopicArn: 'arn:aws:sns:eu-central-1:666702137936:temp-alert', /* required */
-        Endpoint: '601158633'
-      };
-      
-    // Create promise and SNS service object
-    var subscribePromise = new AWS.SNS({apiVersion: '2010-03-31'}).subscribe(params).promise();
+    const result = await isTopic(req.body.endpoint);
+    
+    if(!result) {
+        createTopic(req.body.endpoint);
+    }
+    
+    const alert = new Alert({ 
+        sensor: req.body.sensor,
+        parameter: req.body.param,
+        value: req.body.value,
+        endpoint: req.body.endpoint
+    });
+    
+    try {
+        const result = await alert.save();
+        res.send(result);
+    } catch (err) {
+        res.send(err);
+    };
+});
 
-    subscribePromise.then(
-        function(data) {
-          console.log("Subscription ARN is " + data.SubscriptionArn);
-          res.send(params.Endpoint);
-        }).catch(
-          function(err) {
-          console.error(err, err.stack);
-        });
+router.post('/list-subs', async (req, res) => {
+    const alerts = await Alert.find();
+    res.send(alerts);
+});
+
+router.post('/delete-sub', async (req, res) => {
+    var deleteTopicPromise = new AWS.SNS({apiVersion: '2010-03-31'}).deleteTopic({TopicArn: req.body.topic}).promise();
+
+    deleteTopicPromise.then(
+    function(data) {
+        console.log("Topic Deleted");
+    }).catch(
+        function(err) {
+        console.error(err, err.stack);
+  });
 });
 
 module.exports = router;
