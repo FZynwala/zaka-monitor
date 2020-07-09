@@ -1,0 +1,33 @@
+.menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100vh;
+    z-index: 200;
+    background-color: #111619;
+}
+
+.backdrop {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    background: rgba(0,0,0,0.5);
+}
+
+.show {
+    display: block;
+}
+
+.hide {
+    display: none;
+}
+
+#btn-m {
+    width: 100%;
+    background: transparent;
+    color: #7e97ab;
+}
