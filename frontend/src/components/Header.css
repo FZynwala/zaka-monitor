@@ -1,8 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+
 .button-margins {
     display: flex;
     justify-content: center;
-    margin-left: auto;
-    margin-right: auto;
+    /* margin-left: auto;
+    margin-right: auto; */
 }
 
+.font-color {
+    color: #2BAD60;
+}
 
+.u-mr {
+    margin: 0px!important;
+}
+
+.font {
+    font-family: 'Fredoka One'!important;
+    color: #aeb1ba!important;
+}
+
+.char-icon-color {
+    color: #b08819;
+}

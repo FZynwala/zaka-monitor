@@ -1,88 +1,98 @@
-import './Card.css';
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
+import React from "react";
+import { connect } from "react-redux";
+import { Link } from "react-router-dom";
+import { fetchName } from "../actions";
+import "./Card.css";
 
-import { fetchName } from '../actions';
+const Card = (props) => {
+    const renderMaxTemp = () => {
+        if (props.maxTemp) {
+            var maxTemp = props.maxTemp.maxTemp;
+            var time = props.maxTemp.time;
+            return { maxTemp, time };
+        }
 
+        return "Loading...";
+    };
 
-class Card extends React.Component {
+    const renderMinTemp = () => {
+        if (props.minTemp) {
+            var minTemp = props.minTemp.minTemp;
+            var time = props.minTemp.time;
+            return { minTemp, time };
+        }
 
-	renderMaxTemp = () => {
-		if(this.props.maxTemp) {
-			var maxTemp = this.props.maxTemp.maxTemp;
-			var time = this.props.maxTemp.time;
-			return { maxTemp, time }
-		}
+        return "Loding...";
+    };
 
-		return 'Loading...'
-	};
+    const dotColor = () => {
+        if (props.id === "1") {
+            return "yellow";
+        } else if (props.id === "2") {
+            return "blue";
+        }
+    };
 
-	renderMinTemp = () => {
-		if(this.props.minTemp) {
-			var minTemp = this.props.minTemp.minTemp;
-			var time = this.props.minTemp.time;
-			return { minTemp, time }
-		}
+    const onSettingClick = () => {
+        props.history.push("/settings");
+    };
 
-		return 'Loding...'
-	};
+    if (props.data) {
+        var { temp, time, hum } = props.data;
+    }
 
-	dotColor = () => {
-		if(this.props.id === '1') {
-			return "yellow";
-		} else if(this.props.id === '2') {
-			return "blue"
-		}
-	};
+    return (
+        <>
+            <div className="card background-color">
+                <div className="content">
+                    <div className="right floated mini ui header">
+                        <span className="temp-header">
+                            {temp ? `${temp} \u2103` : "----"}
+                        </span>
+                    </div>
+                    <div className="header">{props.name}</div>
+                    <div className="meta">ID czujnika: {props.id}</div>
+                    <div className="description">
+                        Wilgotność: {hum ? `${hum}%` : "-"} <br />
+                        <span className="max-data">
+                            Max: {`${renderMaxTemp().maxTemp} \u2103`}
+                            <span className="time">
+                                o godz: {`${renderMaxTemp().time}`}{" "}
+                            </span>
+                            <br />
+                        </span>
+                        <span className="min-data">
+                            Min: {`${renderMinTemp().minTemp} \u2103`}
+                            <span className="time">
+                                o godz: {`${renderMinTemp().time}`}{" "}
+                            </span>
+                            <br />
+                        </span>
+                        Czas: {`${time}`} <br />
+                    </div>
+                    <div className="extra content">
+                        <div className="right floated top-margin">
+                            <Link
+                                to={`/chart/temp/${props.id}`}
+                                className="ui green button"
+                            >
+                                Wykres
+                            </Link>
+                        </div>
+                        <div onClick={onSettingClick} className="left floated">
+                            <div className={`dot-${dotColor()}`}></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </>
+    );
+};
 
-	onSettingClick = () => {
-		this.props.history.push('/settings');
-	};
-	 
-	render() {
-		if(this.props.data) {
-			var { temp, time, hum } = this.props.data;	
-		}
-		
-		return (
-				<div className="card">
-					<div className="content">
-						<div className="right floated mini ui header">
-							<span className="temp-header">{`${temp} \u2103`}</span>	
-						</div>
-						<div className="header">{this.props.name}</div>
-						<div className="meta">ID czujnika: {this.props.id}</div>
-						<div className="description">
-							Wilgotność: {`${hum}%`} <br/>
-							<span className="max-data">
-								Max: {`${this.renderMaxTemp().maxTemp} \u2103`} 
-								<span className="time">o godz: {`${this.renderMaxTemp().time}`} </span><br/>
-							</span>
-							<span className="min-data">
-								Min: {`${this.renderMinTemp().minTemp} \u2103`} 
-								<span className="time">o godz: {`${this.renderMinTemp().time}`} </span><br/>
-							</span>
-							Czas: {`${time}`} <br/>
-						</div>
-						<div className="extra content">
-							<div className="right floated top-margin">
-								<Link to={`/chart/temp/${this.props.id}`} className="ui purple button">Wykres</Link>
-							</div>
-							<div onClick={this.onSettingClick} className="left floated">
-								<div className={`dot-${this.dotColor()}`}></div>
-							</div>
-						</div>
-					</div>
-				</div>
-		);
-	};
-}
-
-const mapStateToProps = (state) =>{
-	return {
-		names: state.names
-	};
+const mapStateToProps = (state) => {
+    return {
+        names: state.names,
+    };
 };
 
 export default connect(mapStateToProps, { fetchName })(Card);
