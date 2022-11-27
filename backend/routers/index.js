@@ -109,16 +109,16 @@ router.post('/s01/:temp/:humidity', async (req, res) => {
         time: moment(new Date()).tz('Europe/Warsaw').format('LT'),
     };
 
-    const alerts = await checkAlert('Gora');
-    console.log(alerts);
-    if (alerts) {
-        alerts.forEach((alert) => {
-            if (data[alert.parameter] > alert.value) {
-                console.log('Sending alert!');
-                sendMessage(alert, data);
-            }
-        });
-    }
+    //const alerts = await checkAlert('Gora');
+    // console.log(alerts);
+    // if (alerts) {
+    //     alerts.forEach((alert) => {
+    //         if (data[alert.parameter] > alert.value) {
+    //             console.log('Sending alert!');
+    //             sendMessage(alert, data);
+    //         }
+    //     });
+    // }
 
     if (!foundDay) {
         console.log('Hello from NOT foundDay');
@@ -173,7 +173,7 @@ router.post('/s01/:temp/:humidity', async (req, res) => {
     }
 });
 
-router.post('/s02/:temp/:humidity/:door', async (req, res) => {
+router.post('/s02/:temp/:humidity', async (req, res) => {
     console.log('Hello from POST 02');
     const foundDay = await dayModel.Day.findOne({ date: moment(new Date()).tz('Europe/Warsaw').format('l') });
 
@@ -235,7 +235,7 @@ router.post('/s02/:temp/:humidity/:door', async (req, res) => {
     }
 });
 
-router.post('/s03/:temp/:humidity/:door/:light', async (req, res) => {
+router.post('/s03/:temp/:humidity/:door/:light/:tempOut', async (req, res) => {
     console.log('Hello from POST 03');
     const foundDay = await dayModel.Day.findOne({ date: moment(new Date()).tz('Europe/Warsaw').format('l') });
 
@@ -244,6 +244,7 @@ router.post('/s03/:temp/:humidity/:door/:light', async (req, res) => {
         hum: req.params.humidity,
         isOpen: Boolean(Number(req.params.door)),
         isLight: Boolean(Number(req.params.light)),
+        tempOut: req.params.tempOut,
         time: moment(new Date()).tz('Europe/Warsaw').format('LT'),
     };
 

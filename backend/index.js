@@ -1,6 +1,5 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-// const serverless = require('serverless-http');
 const moment = require('moment');
 require('moment/locale/pl.js');
 
@@ -9,13 +8,12 @@ const days = require('./routers/index');
 
 const app = express();
 
-// module.exports.handler = serverless(app);
-require('../prod')(app);
+require('./prod')(app);
 connectdb.connectToDB();
 
 let allowCrossDomain = function (req, res, next) {
-    //res.header('Access-Control-Allow-Origin', "https://fzynwala.github.io");
-    res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
+    res.header('Access-Control-Allow-Origin', 'https://fzynwala.github.io');
+    // res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
     res.header('Access-Control-Allow-Methods', 'GET');
     res.header('Access-Control-Allow-Methods', 'PUT');
     res.header('Access-Control-Allow-Methods', 'DELETE');
