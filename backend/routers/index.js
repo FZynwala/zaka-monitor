@@ -109,16 +109,16 @@ router.post('/s01/:temp/:humidity', async (req, res) => {
         time: moment(new Date()).tz('Europe/Warsaw').format('LT'),
     };
 
-    const alerts = await checkAlert('Gora');
-    console.log(alerts);
-    if (alerts) {
-        alerts.forEach((alert) => {
-            if (data[alert.parameter] > alert.value) {
-                console.log('Sending alert!');
-                sendMessage(alert, data);
-            }
-        });
-    }
+    //const alerts = await checkAlert('Gora');
+    // console.log(alerts);
+    // if (alerts) {
+    //     alerts.forEach((alert) => {
+    //         if (data[alert.parameter] > alert.value) {
+    //             console.log('Sending alert!');
+    //             sendMessage(alert, data);
+    //         }
+    //     });
+    // }
 
     if (!foundDay) {
         console.log('Hello from NOT foundDay');

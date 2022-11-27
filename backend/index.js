@@ -1,9 +1,5 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-<<<<<<< HEAD
-=======
-// const serverless = require('serverless-http');
->>>>>>> master
 const moment = require('moment');
 require('moment/locale/pl.js');
 
@@ -12,11 +8,7 @@ const days = require('./routers/index');
 
 const app = express();
 
-<<<<<<< HEAD
-=======
-// module.exports.handler = serverless(app);
->>>>>>> master
-require('../prod')(app);
+require('./prod')(app);
 connectdb.connectToDB();
 
 let allowCrossDomain = function (req, res, next) {
