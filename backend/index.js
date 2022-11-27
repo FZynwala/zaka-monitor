@@ -12,8 +12,8 @@ require('./prod')(app);
 connectdb.connectToDB();
 
 let allowCrossDomain = function (req, res, next) {
-    //res.header('Access-Control-Allow-Origin', "https://fzynwala.github.io");
-    res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
+    res.header('Access-Control-Allow-Origin', 'https://fzynwala.github.io');
+    // res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
     res.header('Access-Control-Allow-Methods', 'GET');
     res.header('Access-Control-Allow-Methods', 'PUT');
     res.header('Access-Control-Allow-Methods', 'DELETE');
