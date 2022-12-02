@@ -1,22 +1,22 @@
 {
   "files": {
     "main.css": "/zaka-monitor/static/css/main.9c8b278a.chunk.css",
-    "main.js": "/zaka-monitor/static/js/main.1608ddc8.chunk.js",
-    "main.js.map": "/zaka-monitor/static/js/main.1608ddc8.chunk.js.map",
+    "main.js": "/zaka-monitor/static/js/main.29f0eff1.chunk.js",
+    "main.js.map": "/zaka-monitor/static/js/main.29f0eff1.chunk.js.map",
     "runtime-main.js": "/zaka-monitor/static/js/runtime-main.834d9064.js",
     "runtime-main.js.map": "/zaka-monitor/static/js/runtime-main.834d9064.js.map",
-    "static/js/2.4427e6ef.chunk.js": "/zaka-monitor/static/js/2.4427e6ef.chunk.js",
-    "static/js/2.4427e6ef.chunk.js.map": "/zaka-monitor/static/js/2.4427e6ef.chunk.js.map",
+    "static/js/2.b7cfbef9.chunk.js": "/zaka-monitor/static/js/2.b7cfbef9.chunk.js",
+    "static/js/2.b7cfbef9.chunk.js.map": "/zaka-monitor/static/js/2.b7cfbef9.chunk.js.map",
     "index.html": "/zaka-monitor/index.html",
-    "precache-manifest.a16ad84092200e4d7648a3d1c3584266.js": "/zaka-monitor/precache-manifest.a16ad84092200e4d7648a3d1c3584266.js",
+    "precache-manifest.f3e2ffdc4d917649b80cb41395e4dfbd.js": "/zaka-monitor/precache-manifest.f3e2ffdc4d917649b80cb41395e4dfbd.js",
     "service-worker.js": "/zaka-monitor/service-worker.js",
     "static/css/main.9c8b278a.chunk.css.map": "/zaka-monitor/static/css/main.9c8b278a.chunk.css.map",
-    "static/js/2.4427e6ef.chunk.js.LICENSE.txt": "/zaka-monitor/static/js/2.4427e6ef.chunk.js.LICENSE.txt"
+    "static/js/2.b7cfbef9.chunk.js.LICENSE.txt": "/zaka-monitor/static/js/2.b7cfbef9.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.834d9064.js",
-    "static/js/2.4427e6ef.chunk.js",
+    "static/js/2.b7cfbef9.chunk.js",
     "static/css/main.9c8b278a.chunk.css",
-    "static/js/main.1608ddc8.chunk.js"
+    "static/js/main.29f0eff1.chunk.js"
   ]
 }
