@@ -6,3 +6,8 @@
 i {
     font-size: 30px;
 }
+
+body {
+    background-color: #34495e;
+    /* overflow: hidden; */
+}
