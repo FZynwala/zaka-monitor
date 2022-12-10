@@ -3,8 +3,9 @@ const bodyParser = require('body-parser');
 const moment = require('moment');
 require('moment/locale/pl.js');
 
-const connectdb = require('./connectDB');
-const days = require('./routers/index');
+const connectdb = require('./config/db.config');
+const dataRoute = require('./routers/data.route');
+const sensorRouter = require('./routers/sensor.route');
 
 const app = express();
 
@@ -28,7 +29,8 @@ app.use(express.json());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.use('/', days);
+app.use('/', dataRoute);
+app.use('/sensor', sensorRouter);
 
 const port = process.env.PORT || 8000;
 app.listen(port);
