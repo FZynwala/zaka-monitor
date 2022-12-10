@@ -293,7 +293,7 @@ router.post('/s03/:temp/:humidity/:door/:light/:tempOut', async (req, res) => {
             }
 
             if (parseFloat(obj.tempOut) > parseFloat(maxTempOut)) {
-                maxTempOut = obj.temp;
+                maxTempOut = obj.tempOut;
                 foundDay.maxTemp = {
                     ...foundDay.maxTemp,
                     tempOut: {
@@ -302,8 +302,8 @@ router.post('/s03/:temp/:humidity/:door/:light/:tempOut', async (req, res) => {
                     },
                 };
             }
-            if (parseFloat(obj.temp) < parseFloat(minTempOut)) {
-                minTempOut = obj.temp;
+            if (parseFloat(obj.tempOut) < parseFloat(minTempOut)) {
+                minTempOut = obj.tempOut;
                 foundDay.minTemp = {
                     ...foundDay.minTemp,
                     tempOut: {
