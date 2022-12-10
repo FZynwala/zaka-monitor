@@ -263,7 +263,9 @@ router.post('/s03/:temp/:humidity/:door/:light/:tempOut', async (req, res) => {
         }
     } else {
         console.log('Hello from foundDay');
+        let maxTempOut = 0;
         let maxTemp = 0;
+        let minTempOut = 100;
         let minTemp = 100;
 
         foundDay.sensor03.push(data);
@@ -285,6 +287,27 @@ router.post('/s03/:temp/:humidity/:door/:light/:tempOut', async (req, res) => {
                     ...foundDay.minTemp,
                     sensor03: {
                         minTemp: minTemp,
+                        time: obj.time,
+                    },
+                };
+            }
+
+            if (parseFloat(obj.tempOut) > parseFloat(maxTempOut)) {
+                maxTempOut = obj.temp;
+                foundDay.maxTemp = {
+                    ...foundDay.maxTemp,
+                    tempOut: {
+                        maxTemp: maxTempOut,
+                        time: obj.time,
+                    },
+                };
+            }
+            if (parseFloat(obj.temp) < parseFloat(minTempOut)) {
+                minTempOut = obj.temp;
+                foundDay.minTemp = {
+                    ...foundDay.minTemp,
+                    tempOut: {
+                        minTemp: minTempOut,
                         time: obj.time,
                     },
                 };
