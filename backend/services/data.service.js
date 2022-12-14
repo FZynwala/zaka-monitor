@@ -6,16 +6,23 @@ require('moment/locale/pl.js');
 const postData = async (req, sensor) => {
     const foundDay = await dayModel.Day.findOne({ date: moment(new Date()).tz('Europe/Warsaw').format('l') });
 
-    let data = {
-        temp: req.params.temp,
-        hum: req.params.humidity,
-        isOpen: Boolean(Number(req.params.door)),
-        isLight: Boolean(Number(req.params.light)),
-        tempOut: req.params.tempOut,
-        time: moment(new Date()).tz('Europe/Warsaw').format('LT'),
-    };
-
     const sensorKey = getSensorKey(sensor);
+
+    let data =
+        sensorKey === 'sensor03'
+            ? {
+                  temp: req.params.temp,
+                  hum: req.params.humidity,
+                  isOpen: Boolean(Number(req.params.door)),
+                  isLight: Boolean(Number(req.params.light)),
+                  tempOut: req.params.tempOut,
+                  time: moment(new Date()).tz('Europe/Warsaw').format('LT'),
+              }
+            : {
+                  temp: req.params.temp,
+                  hum: req.params.humidity,
+                  time: moment(new Date()).tz('Europe/Warsaw').format('LT'),
+              };
 
     if (!foundDay) {
         const day = new dayModel.Day({
