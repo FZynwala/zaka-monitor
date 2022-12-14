@@ -114,6 +114,8 @@ const getSensorKey = (sensor) => {
             return 'sensor02';
         case 's03':
             return 'sensor03';
+        case 's04':
+            return 'sensor04';
         default:
             break;
     }

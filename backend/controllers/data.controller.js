@@ -27,6 +27,15 @@ const postSensor03Data = async (req, res, next) => {
     }
 };
 
+const postSensor04Data = async (req, res, next) => {
+    try {
+        await dataService.postData(req, 's04');
+        res.send.status(200);
+    } catch (e) {
+        res.send(e).status(500);
+    }
+};
+
 const getData = async (req, res, next) => {
     try {
         const response = await dataService.getData();
@@ -40,6 +49,7 @@ module.exports = {
     postSensor01Data,
     postSensor02Data,
     postSensor03Data,
+    postSensor04Data,
     getData,
 };
 

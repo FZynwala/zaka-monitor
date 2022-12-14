@@ -21,6 +21,7 @@ router.post('/s01/:temp/:humidity', dataController.postSensor01Data);
 router.post('/s02/:temp/:humidity', dataController.postSensor02Data);
 
 router.post('/s03/:temp/:humidity/:door/:light/:tempOut', dataController.postSensor03Data);
+router.post('/s04/:temp/:humidity', dataController.postSensor04Data);
 
 router.get('/', dataController.getData);
 
