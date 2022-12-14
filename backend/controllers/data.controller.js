@@ -3,27 +3,27 @@ const dataService = require('../services/data.service');
 const postSensor01Data = async (req, res, next) => {
     try {
         await dataService.postData(req, 's01');
-        res.send.status(200);
+        res.sendStatus(200);
     } catch (e) {
-        res.send(e).status(500);
+        res.sendStatus(500).send(e);
     }
 };
 
 const postSensor02Data = async (req, res, next) => {
     try {
         await dataService.postData(req, 's02');
-        res.send.status(200);
+        res.sendStatus(200);
     } catch (e) {
-        res.send(e).status(500);
+        res.sendStatus(500).send(e);
     }
 };
 
 const postSensor03Data = async (req, res, next) => {
     try {
         await dataService.postData(req, 's03');
-        res.send.status(200);
+        res.sendStatus(200);
     } catch (e) {
-        res.send(e).status(500);
+        res.sendStatus(500).send(e);
     }
 };
 
@@ -32,7 +32,7 @@ const getData = async (req, res, next) => {
         const response = await dataService.getData();
         res.send(response);
     } catch (e) {
-        res.send(e).status(500);
+        res.sendStatus(500).send(e);
     }
 };
 

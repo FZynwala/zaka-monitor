@@ -40,7 +40,7 @@ const postData = async (req, sensor) => {
         foundDay.minTemp = {
             ...foundDay.minTemp,
             [sensorKey]: {
-                maxTemp: minTemp.temp,
+                minTemp: minTemp.temp,
                 time: minTemp.time,
             },
         };
@@ -57,7 +57,7 @@ const postData = async (req, sensor) => {
             foundDay.minTemp = {
                 ...foundDay.minTemp,
                 tempOut: {
-                    maxTemp: minTempOut.temp,
+                    minTemp: minTempOut.temp,
                     time: minTempOut.time,
                 },
             };
@@ -121,11 +121,11 @@ const getSensorKey = (sensor) => {
 
 const getMaxMinTemp = (foundDay, sensorKey) => {
     let maxTempOut = {
-        temp: 0,
+        temp: -100,
         time: '',
     };
     let maxTemp = {
-        temp: 0,
+        temp: -100,
         time: '',
     };
     let minTempOut = {
