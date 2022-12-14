@@ -135,7 +135,7 @@ router.post('/s01/:temp/:humidity', async (req, res) => {
         }
     } else {
         console.log('Hello from foundDay');
-        let maxTemp = 0;
+        let maxTemp = -100;
         let minTemp = 100;
 
         foundDay.sensor01.push(data);
@@ -198,7 +198,7 @@ router.post('/s02/:temp/:humidity', async (req, res) => {
         }
     } else {
         console.log('Hello from foundDay');
-        let maxTemp = 0;
+        let maxTemp = -100;
         let minTemp = 100;
 
         foundDay.sensor02.push(data);
@@ -263,8 +263,8 @@ router.post('/s03/:temp/:humidity/:door/:light/:tempOut', async (req, res) => {
         }
     } else {
         console.log('Hello from foundDay');
-        let maxTempOut = 0;
-        let maxTemp = 0;
+        let maxTempOut = -100;
+        let maxTemp = -100;
         let minTempOut = 100;
         let minTemp = 100;
 
