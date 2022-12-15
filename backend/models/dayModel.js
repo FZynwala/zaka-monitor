@@ -1,28 +1,28 @@
 const mongoose = require('mongoose');
-const moment = require("moment");
+const moment = require('moment');
 
 const userSchema = new mongoose.Schema({
     date: {
-        type: String
+        type: String,
     },
     sensor01: {
-        type: []
+        type: [],
     },
     sensor02: {
-        type: []
+        type: [],
     },
     sensor03: {
-        type: []
+        type: [],
+    },
+    sensor04: {
+        type: [],
     },
     maxTemp: {
-        type: {
-            sensor01: {},
-            sensor02: {}
-        }
+        type: {},
     },
     minTemp: {
-        type: {}
-    }
+        type: {},
+    },
 });
 
 const Day = mongoose.model('Day', userSchema);
