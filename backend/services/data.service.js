@@ -130,11 +130,11 @@ const getSensorKey = (sensor) => {
 
 const getMaxMinTemp = (foundDay, sensorKey) => {
     let maxTempOut = {
-        temp: 0,
+        temp: -100,
         time: '',
     };
     let maxTemp = {
-        temp: 0,
+        temp: -100,
         time: '',
     };
     let minTempOut = {

@@ -3,7 +3,7 @@ const dataService = require('../services/data.service');
 const postSensor01Data = async (req, res, next) => {
     try {
         await dataService.postData(req, 's01');
-        res.send.sendStatus(200);
+        res.sendStatus(200);
     } catch (e) {
         res.sendStatus(500).send(e);
     }
@@ -12,7 +12,7 @@ const postSensor01Data = async (req, res, next) => {
 const postSensor02Data = async (req, res, next) => {
     try {
         await dataService.postData(req, 's02');
-        res.send.sendStatus(200);
+        res.sendStatus(200);
     } catch (e) {
         res.sendStatus(500).send(e);
     }
@@ -41,7 +41,7 @@ const getData = async (req, res, next) => {
         const response = await dataService.getData();
         res.sendStatus(200).send(response);
     } catch (e) {
-        res.sendStatus(500).send(500);
+        res.sendStatus(500).send(e);
     }
 };
 
