@@ -39,7 +39,7 @@ const postSensor04Data = async (req, res, next) => {
 const getData = async (req, res, next) => {
     try {
         const response = await dataService.getData();
-        res.sendStatus(200).send(response);
+        res.send(response).status(200);
     } catch (e) {
         res.sendStatus(500).send(e);
     }

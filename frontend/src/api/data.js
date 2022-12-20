@@ -5,5 +5,5 @@ const localhost = 'http://localhost:8000';
 const renderUrl = 'https://zaka-monitor-api.onrender.com';
 
 export default axios.create({
-    baseURL: renderUrl,
+    baseURL: localhost,
 });

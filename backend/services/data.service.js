@@ -1,10 +1,12 @@
 const dayModel = require('../models/dayModel');
+const devdayModel = require('../models/devdayModel');
 const moment = require('moment');
 const tz = require('moment-timezone');
 require('moment/locale/pl.js');
 
 const postData = async (req, sensor) => {
-    const foundDay = await dayModel.Day.findOne({ date: moment(new Date()).tz('Europe/Warsaw').format('l') });
+    // const foundDay = await dayModel.Day.findOne({ date: moment(new Date()).tz('Europe/Warsaw').format('l') });
+    const foundDay = await devdayModel.Devday.findOne({ date: moment(new Date()).tz('Europe/Warsaw').format('l') });
 
     const sensorKey = getSensorKey(sensor);
 
@@ -16,16 +18,16 @@ const postData = async (req, sensor) => {
                   isOpen: Boolean(Number(req.params.door)),
                   isLight: Boolean(Number(req.params.light)),
                   tempOut: req.params.tempOut,
-                  time: moment(new Date()).tz('Europe/Warsaw').format('LT'),
+                  time: moment(new Date()).tz('Europe/Warsaw').format(),
               }
             : {
                   temp: req.params.temp,
                   hum: req.params.humidity,
-                  time: moment(new Date()).tz('Europe/Warsaw').format('LT'),
+                  time: moment(new Date()).tz('Europe/Warsaw').format(),
               };
 
     if (!foundDay) {
-        const day = new dayModel.Day({
+        const day = new devdayModel.Devday({
             [sensorKey]: data,
             date: moment(new Date()).tz('Europe/Warsaw').format('l'),
         });
@@ -78,8 +80,8 @@ const getData = async () => {
     const yDate = new Date();
     yDate.setDate(yDate.getDate() - 1);
 
-    const today = await dayModel.Day.findOne({ date: moment(new Date()).format('l') });
-    const yesterday = await dayModel.Day.findOne({ date: moment(yDate).format('l') });
+    const today = await devdayModel.Devday.findOne({ date: moment(new Date()).format('l') });
+    const yesterday = await devdayModel.Devday.findOne({ date: moment(yDate).format('l') });
 
     if (today && yesterday) {
         var response = {
