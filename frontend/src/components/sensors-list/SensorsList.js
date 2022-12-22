@@ -23,7 +23,7 @@ const SensorsList = ({ sensor01, sensor02, sensor03, fetchToday, fetchName, maxT
         fetchName();
     }, []);
 
-    if (!maxTemp || !names) return null;
+    if (!maxTemp || !names.a) return null;
 
     return (
         <>

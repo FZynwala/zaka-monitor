@@ -8,13 +8,13 @@ import ChartModal from './ChartModal';
 import './ShowChart.css';
 
 class ShowChart extends React.Component {
+    dateWithMixedTimeType = moment('19.12.2022', 'DD.MM.YYYY');
+
+    isNewChart = () => (moment(this.props.today.date, 'DD.MM.YYYY').isAfter(this.dateWithMixedTimeType) ? true : false);
     prepareTempToChart = () => {
-        console.log('##PROPS:', this.props);
         if (this.props.today) {
             if (this.props.match.path === '/chart/temp/:id') {
                 if (this.props.match.params.id === '1') {
-                    console.log('Hello from preapareTemp');
-
                     return prepareData(this.props.today.sensor01, this.props.yesterday.sensor01, 'temp');
                 } else if (this.props.match.params.id === '2') {
                     return prepareData(this.props.today.sensor02, this.props.yesterday.sensor02, 'temp');
@@ -25,8 +25,6 @@ class ShowChart extends React.Component {
                 }
             } else if (this.props.match.path === '/chart/hum/:id') {
                 if (this.props.match.params.id === '1') {
-                    console.log('Hello from preapareHum');
-
                     return prepareData(this.props.today.sensor01, this.props.yesterday.sensor01, 'hum');
                 } else if (this.props.match.params.id === '2') {
                     return prepareData(this.props.today.sensor02, this.props.yesterday.sensor02, 'hum');
@@ -61,19 +59,18 @@ class ShowChart extends React.Component {
 
     render() {
         if (this.props.today) {
-            console.log('$$', Object.values(this.props.today[`sensor0${this.props.match.params.id}`]));
-            console.log('$$$', [this.props.today[`sensor0${this.props.match.params.id}`][0]]);
             return (
                 <ChartModal
                     data={[
-                        ...prepareChartData(this.props.today[`sensor0${this.props.match.params.id}`]),
-                        ...prepareChartData(this.props.yesterday[`sensor0${this.props.match.params.id}`]),
+                        ...prepareChartData(this.props.yesterday[getSensorName(this.props.match.params.id)]),
+                        ...prepareChartData(this.props.today[getSensorName(this.props.match.params.id)]),
                     ]}
-                    // xData={this.prepareTempToChart().dataTime}
-                    // yData={this.prepareTempToChart().dataTemp}
+                    xData={this.isNewChart() ? undefined : this.prepareTempToChart().dataTime}
+                    yData={this.isNewChart() ? undefined : this.prepareTempToChart().dataTemp}
                     type={this.props.match.path === '/chart/temp/:id' ? 'temp' : 'hum'}
                     actions={this.renderActions()}
                     onDismiss={() => this.props.history.push('/')}
+                    isNewChart={this.isNewChart()}
                 />
             );
         } else {
@@ -90,11 +87,27 @@ class ShowChart extends React.Component {
     }
 }
 
-const prepareChartData = (data) =>
-    data.map((obj) => {
-        console.log('@MAP:', obj.time, moment(obj.time));
+const prepareChartData = (data) => {
+    console.log('%DATA', data);
+    return data.map((obj) => {
         return { ...obj, time: moment(obj.time).toDate().getTime() };
     });
+};
+
+const getSensorName = (id) => {
+    switch (id) {
+        case '1':
+            return 'sensor01';
+        case '2':
+            return 'sensor02';
+        case '3':
+            return 'sensor03';
+        case '4':
+            return 'sensor03';
+        case '5':
+            return 'sensor04';
+    }
+};
 
 const mapStateToProps = (state) => {
     return {
