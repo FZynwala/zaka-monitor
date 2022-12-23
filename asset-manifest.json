@@ -1,22 +1,26 @@
 {
   "files": {
-    "main.css": "/zaka-monitor/static/css/main.6a847f4f.chunk.css",
-    "main.js": "/zaka-monitor/static/js/main.aa0be189.chunk.js",
-    "main.js.map": "/zaka-monitor/static/js/main.aa0be189.chunk.js.map",
-    "runtime-main.js": "/zaka-monitor/static/js/runtime-main.a49bec43.js",
-    "runtime-main.js.map": "/zaka-monitor/static/js/runtime-main.a49bec43.js.map",
-    "static/js/2.86a4dd86.chunk.js": "/zaka-monitor/static/js/2.86a4dd86.chunk.js",
-    "static/js/2.86a4dd86.chunk.js.map": "/zaka-monitor/static/js/2.86a4dd86.chunk.js.map",
-    "index.html": "/zaka-monitor/index.html",
-    "precache-manifest.bf0421b9dfe919df4fd894031e60947a.js": "/zaka-monitor/precache-manifest.bf0421b9dfe919df4fd894031e60947a.js",
-    "service-worker.js": "/zaka-monitor/service-worker.js",
-    "static/css/main.6a847f4f.chunk.css.map": "/zaka-monitor/static/css/main.6a847f4f.chunk.css.map",
-    "static/js/2.86a4dd86.chunk.js.LICENSE.txt": "/zaka-monitor/static/js/2.86a4dd86.chunk.js.LICENSE.txt"
+    "main.css": "/static/css/main.2f841ec1.chunk.css",
+    "main.js": "/static/js/main.887a4ba6.chunk.js",
+    "main.js.map": "/static/js/main.887a4ba6.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.bce919bb.js",
+    "runtime-main.js.map": "/static/js/runtime-main.bce919bb.js.map",
+    "static/css/2.d0946657.chunk.css": "/static/css/2.d0946657.chunk.css",
+    "static/js/2.30c123e0.chunk.js": "/static/js/2.30c123e0.chunk.js",
+    "static/js/2.30c123e0.chunk.js.map": "/static/js/2.30c123e0.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.a56c8211b367118ea3dbe02ad407e017.js": "/precache-manifest.a56c8211b367118ea3dbe02ad407e017.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/2.d0946657.chunk.css.map": "/static/css/2.d0946657.chunk.css.map",
+    "static/css/main.2f841ec1.chunk.css.map": "/static/css/main.2f841ec1.chunk.css.map",
+    "static/js/2.30c123e0.chunk.js.LICENSE.txt": "/static/js/2.30c123e0.chunk.js.LICENSE.txt",
+    "static/media/semantic.min.css": "/static/media/outline-icons.ef60a4f6.woff"
   },
   "entrypoints": [
-    "static/js/runtime-main.a49bec43.js",
-    "static/js/2.86a4dd86.chunk.js",
-    "static/css/main.6a847f4f.chunk.css",
-    "static/js/main.aa0be189.chunk.js"
+    "static/js/runtime-main.bce919bb.js",
+    "static/css/2.d0946657.chunk.css",
+    "static/js/2.30c123e0.chunk.js",
+    "static/css/main.2f841ec1.chunk.css",
+    "static/js/main.887a4ba6.chunk.js"
   ]
 }
