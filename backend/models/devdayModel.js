@@ -25,6 +25,6 @@ const userSchema = new mongoose.Schema({
     },
 });
 
-const Day = mongoose.model('Day', userSchema);
+const Devday = mongoose.model('Devday', userSchema);
 
-module.exports.Day = Day;
+module.exports.Devday = Devday;

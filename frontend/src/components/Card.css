@@ -4,12 +4,10 @@
 
 .time {
     margin-left: 4%;
-    
 }
 
 .max-data {
     color: #e22727;
-    
 }
 
 .min-data {
@@ -44,10 +42,18 @@
     background-color: #222f3e;
 }
 
+.dot-purple {
+    border-radius: 9999px;
+    width: 20px;
+    height: 20px;
+    margin-top: 15px;
+    background-color: #8e44ad;
+}
+
 .temp-header {
     font-size: 26px;
 }
 
 .background-color {
-    background: #dcdde1!important;
+    background: #dcdde1 !important;
 }

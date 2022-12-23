@@ -1,8 +1,8 @@
-import './ColorPicker.css';
 import React from 'react';
 import { connect } from 'react-redux';
-import { changeColor } from '../actions';
 import { Link } from 'react-router-dom';
+import { changeColor } from '../actions';
+import './ColorPicker.css';
 
 class ColorPicker extends React.Component {
     color = "black-pearl";
@@ -30,10 +30,10 @@ class ColorPicker extends React.Component {
                     <div className="color magenta-purple"></div>
                     <div className="color ships-officer"></div>
                 </div>
-                <div class="ui buttons" id="save">
-                    <Link to="/" class="ui button">Cancel</Link>
-                    <div class="or"></div>
-                    <Link to="/" class="ui positive button" onClick={this.onSaveClick}>Save</Link>
+                <div className=''="ui buttons" id="save">
+                    <Link to="/" className="ui button">Cancel</Link>
+                    <div className="or"></div>
+                    <Link to="/" className="ui positive button" onClick={this.onSaveClick}>Save</Link>
                 </div>
             </div>
         );

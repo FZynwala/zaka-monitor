@@ -1,70 +1,42 @@
-import React from "react";
-import { connect } from "react-redux";
-import { Link } from "react-router-dom";
-import { fetchToday } from "../actions";
-import prepareData from "../prepareData";
-import ChartModal from "./ChartModal";
-import "./ShowChart.css";
+import moment from 'moment';
+import React from 'react';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { fetchToday } from '../actions';
+import prepareData from '../prepareData';
+import ChartModal from './ChartModal';
+import './ShowChart.css';
 
 class ShowChart extends React.Component {
+    dateWithMixedTimeType = moment('19.12.2022', 'DD.MM.YYYY');
+
+    isNewChart = () => (moment(this.props.today.date, 'DD.MM.YYYY').isAfter(this.dateWithMixedTimeType) ? true : false);
     prepareTempToChart = () => {
         if (this.props.today) {
-            if (this.props.match.path === "/chart/temp/:id") {
-                if (this.props.match.params.id === "1") {
-                    console.log("Hello from preapareTemp");
-
-                    return prepareData(
-                        this.props.today.sensor01,
-                        this.props.yesterday.sensor01,
-                        "temp"
-                    );
-                } else if (this.props.match.params.id === "2") {
-                    return prepareData(
-                        this.props.today.sensor02,
-                        this.props.yesterday.sensor02,
-                        "temp"
-                    );
-                } else if (this.props.match.params.id === "3") {
-                    return prepareData(
-                        this.props.today.sensor03,
-                        this.props.yesterday.sensor03,
-                        "temp"
-                    );
-                } else if (this.props.match.params.id === "4") {
-                    return prepareData(
-                        this.props.today.sensor03,
-                        this.props.yesterday.sensor03,
-                        "tempOut"
-                    );
+            if (this.props.match.path === '/chart/temp/:id') {
+                if (this.props.match.params.id === '1') {
+                    return prepareData(this.props.today.sensor01, this.props.yesterday.sensor01, 'temp');
+                } else if (this.props.match.params.id === '2') {
+                    return prepareData(this.props.today.sensor02, this.props.yesterday.sensor02, 'temp');
+                } else if (this.props.match.params.id === '3') {
+                    return prepareData(this.props.today.sensor03, this.props.yesterday.sensor03, 'temp');
+                } else if (this.props.match.params.id === '4') {
+                    return prepareData(this.props.today.sensor03, this.props.yesterday.sensor03, 'tempOut');
                 }
-            } else if (this.props.match.path === "/chart/hum/:id") {
-                if (this.props.match.params.id === "1") {
-                    console.log("Hello from preapareHum");
-
-                    return prepareData(
-                        this.props.today.sensor01,
-                        this.props.yesterday.sensor01,
-                        "hum"
-                    );
-                } else if (this.props.match.params.id === "2") {
-                    return prepareData(
-                        this.props.today.sensor02,
-                        this.props.yesterday.sensor02,
-                        "hum"
-                    );
-                } else if (this.props.match.params.id === "3") {
-                    return prepareData(
-                        this.props.today.sensor03,
-                        this.props.yesterday.sensor03,
-                        "hum"
-                    );
+            } else if (this.props.match.path === '/chart/hum/:id') {
+                if (this.props.match.params.id === '1') {
+                    return prepareData(this.props.today.sensor01, this.props.yesterday.sensor01, 'hum');
+                } else if (this.props.match.params.id === '2') {
+                    return prepareData(this.props.today.sensor02, this.props.yesterday.sensor02, 'hum');
+                } else if (this.props.match.params.id === '3') {
+                    return prepareData(this.props.today.sensor03, this.props.yesterday.sensor03, 'hum');
                 }
             }
         }
     };
 
     renderActions() {
-        if (this.props.match.params.id === "4") {
+        if (this.props.match.params.id === '4') {
             return (
                 <React.Fragment>
                     <Link to="/" className="ui green button">
@@ -75,35 +47,39 @@ class ShowChart extends React.Component {
         }
         return (
             <React.Fragment>
-                <Link
-                    to={`/chart/temp/${this.props.match.params.id}`}
-                    className="ui green button"
-                >
+                <Link to={`/chart/temp/${this.props.match.params.id}`} className="ui green button">
                     Temperatura
                 </Link>
-                <Link
-                    to={`/chart/hum/${this.props.match.params.id}`}
-                    className="ui green button"
-                >
+                <Link to={`/chart/hum/${this.props.match.params.id}`} className="ui green button">
                     Wilgotność
                 </Link>
             </React.Fragment>
         );
     }
 
+    getChartType = () => {
+        return this.props.match.path === '/chart/hum/:id'
+            ? 'hum'
+            : this.props.match.params.id === '4'
+            ? 'tempOut'
+            : 'temp';
+    };
+
     render() {
         if (this.props.today) {
+            console.log('&&', this.props.today[getSensorName(this.props.match.params.id)]);
             return (
                 <ChartModal
-                    xData={this.prepareTempToChart().dataTime}
-                    yData={this.prepareTempToChart().dataTemp}
-                    type={
-                        this.props.match.path === "/chart/temp/:id"
-                            ? "temp"
-                            : "hum"
-                    }
+                    data={[
+                        ...prepareChartData(this.props.yesterday[getSensorName(this.props.match.params.id)]),
+                        ...prepareChartData(this.props.today[getSensorName(this.props.match.params.id)]),
+                    ]}
+                    xData={this.isNewChart() ? undefined : this.prepareTempToChart().dataTime}
+                    yData={this.isNewChart() ? undefined : this.prepareTempToChart().dataTemp}
+                    type={this.getChartType()}
                     actions={this.renderActions()}
-                    onDismiss={() => this.props.history.push("/")}
+                    onDismiss={() => this.props.history.push('/')}
+                    isNewChart={this.isNewChart()}
                 />
             );
         } else {
@@ -111,18 +87,36 @@ class ShowChart extends React.Component {
                 <ChartModal
                     xData={null}
                     yData={null}
-                    type={
-                        this.props.match.path === "/chart/temp/:id"
-                            ? "temp"
-                            : "hum"
-                    }
+                    type={this.props.match.path === '/chart/temp/:id' ? 'temp' : 'hum'}
                     actions={this.renderActions()}
-                    onDismiss={() => this.props.history.push("/")}
+                    onDismiss={() => this.props.history.push('/')}
                 />
             );
         }
     }
 }
+
+const prepareChartData = (data) => {
+    console.log('%DATA', data);
+    return data.map((obj) => {
+        return { ...obj, time: moment(obj.time).toDate().getTime() };
+    });
+};
+
+const getSensorName = (id) => {
+    switch (id) {
+        case '1':
+            return 'sensor01';
+        case '2':
+            return 'sensor02';
+        case '3':
+            return 'sensor03';
+        case '4':
+            return 'sensor03';
+        case '5':
+            return 'sensor04';
+    }
+};
 
 const mapStateToProps = (state) => {
     return {
