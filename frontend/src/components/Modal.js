@@ -16,13 +16,16 @@ class Modal extends React.Component {
     }
 
     onSubmit = async (formValues) => {
-        console.log(formValues);
-        await this.props.postName(formValues);
+        const body = {
+            name1: formValues.name1 ? formValues.name1 : this.props.names.a.name,
+            name2: formValues.name2 ? formValues.name2 : this.props.names.b.name,
+            name3: formValues.name3 ? formValues.name3 : this.props.names.c.name,
+        };
+        await this.props.postName(body);
 
         this.props.history.push('/');
     };
 
-   
     render() {
         return ReactDOM.createPortal(
             <div onClick={this.props.onDismiss} className="ui dimmer modals visible active">
@@ -32,6 +35,7 @@ class Modal extends React.Component {
                         <form onSubmit={this.props.handleSubmit(this.onSubmit)} className="ui form">
                             <Field name="name1" component={this.renderInput} label="Nazwa czujnika 1:" />
                             <Field name="name2" component={this.renderInput} label="Nazwa czujnika 2:" />
+                            <Field name="name3" component={this.renderInput} label="Nazwa czujnika 3:" />
                             <div className="actions">
                                 <button className="ui black button">Zapisz</button>
                             </div>
@@ -39,11 +43,11 @@ class Modal extends React.Component {
                     </div>
                 </div>
             </div>,
-            document.querySelector('#modal')
+            document.querySelector('#modal'),
         );
     }
 }
 
 export default reduxForm({
-    form: 'sensorsNames'
+    form: 'sensorsNames',
 })(connect(null, { postName })(Modal));

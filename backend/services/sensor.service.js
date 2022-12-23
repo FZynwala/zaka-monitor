@@ -2,8 +2,8 @@ const sensorModel = require('../models/sensorModel');
 
 const getSensors = async () => {
     const sensors = await sensorModel.Sensor.find({});
-    const { a, b } = sensors[0];
-    const response = { a, b };
+    const { a, b, c } = sensors[0];
+    const response = { a, b, c };
 
     return response;
 };
@@ -21,6 +21,10 @@ const postSensor = async (requestBody) => {
                 name: requestBody.name2,
                 id: '2',
             },
+            c: {
+                name: requestBody.name2,
+                id: '5',
+            },
         });
 
         const result = await sensor.save();
@@ -33,6 +37,7 @@ const postSensor = async (requestBody) => {
                 $set: {
                     a: { name: requestBody.name1, id: '1' },
                     b: { name: requestBody.name2, id: '2' },
+                    c: { name: requestBody.name3, id: '5' },
                 },
             },
             { new: true },

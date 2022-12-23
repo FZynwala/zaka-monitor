@@ -1,10 +1,12 @@
 const dayModel = require('../models/dayModel');
+const devdayModel = require('../models/devdayModel');
 const moment = require('moment');
 const tz = require('moment-timezone');
 require('moment/locale/pl.js');
 
 const postData = async (req, sensor) => {
-    const foundDay = await dayModel.Day.findOne({ date: moment(new Date()).tz('Europe/Warsaw').format('l') });
+    // const foundDay = await dayModel.Day.findOne({ date: moment(new Date()).tz('Europe/Warsaw').format('l') });
+    const foundDay = await devdayModel.Devday.findOne({ date: moment(new Date()).tz('Europe/Warsaw').format('l') });
 
     const sensorKey = getSensorKey(sensor);
 
@@ -16,16 +18,16 @@ const postData = async (req, sensor) => {
                   isOpen: Boolean(Number(req.params.door)),
                   isLight: Boolean(Number(req.params.light)),
                   tempOut: req.params.tempOut,
-                  time: moment(new Date()).tz('Europe/Warsaw').format('LT'),
+                  time: moment(new Date()).tz('Europe/Warsaw').format(),
               }
             : {
                   temp: req.params.temp,
                   hum: req.params.humidity,
-                  time: moment(new Date()).tz('Europe/Warsaw').format('LT'),
+                  time: moment(new Date()).tz('Europe/Warsaw').format(),
               };
 
     if (!foundDay) {
-        const day = new dayModel.Day({
+        const day = new devdayModel.Devday({
             [sensorKey]: data,
             date: moment(new Date()).tz('Europe/Warsaw').format('l'),
         });
@@ -52,7 +54,7 @@ const postData = async (req, sensor) => {
             },
         };
 
-        if (sensorKey === 'sensor3') {
+        if (sensorKey === 'sensor03') {
             foundDay.maxTemp = {
                 ...foundDay.maxTemp,
                 tempOut: {
@@ -78,8 +80,8 @@ const getData = async () => {
     const yDate = new Date();
     yDate.setDate(yDate.getDate() - 1);
 
-    const today = await dayModel.Day.findOne({ date: moment(new Date()).format('l') });
-    const yesterday = await dayModel.Day.findOne({ date: moment(yDate).format('l') });
+    const today = await devdayModel.Devday.findOne({ date: moment(new Date()).format('l') });
+    const yesterday = await devdayModel.Devday.findOne({ date: moment(yDate).format('l') });
 
     if (today && yesterday) {
         var response = {
@@ -87,6 +89,8 @@ const getData = async () => {
                 sensor01: today.sensor01,
                 sensor02: today.sensor02,
                 sensor03: today.sensor03,
+                sensor04: today.sensor04,
+                date: today.date,
                 maxTemp: today.maxTemp,
                 minTemp: today.minTemp,
             },
@@ -94,6 +98,8 @@ const getData = async () => {
                 sensor01: yesterday.sensor01,
                 sensor02: yesterday.sensor02,
                 sensor03: yesterday.sensor03,
+                sensor04: yesterday.sensor04,
+                date: yesterday.date,
                 maxTemp: yesterday.maxTemp,
                 minTemp: yesterday.minTemp,
             },
@@ -104,6 +110,7 @@ const getData = async () => {
                 sensor01: today.sensor01,
                 sensor02: today.sensor02,
                 sensor03: today.sensor03,
+                sensor04: today.sensor04,
                 maxTemp: today.maxTemp,
                 minTemp: today.minTemp,
             },
@@ -158,7 +165,7 @@ const getMaxMinTemp = (foundDay, sensorKey) => {
             if (parseFloat(obj.tempOut) > parseFloat(maxTempOut.temp)) {
                 maxTempOut = { temp: obj.tempOut, time: obj.time };
             }
-            if (parseFloat(obj.temp) < parseFloat(minTempOut.temp)) {
+            if (parseFloat(obj.tempOut) < parseFloat(minTempOut.temp)) {
                 minTempOut = { temp: obj.tempOut, time: obj.time };
             }
         }

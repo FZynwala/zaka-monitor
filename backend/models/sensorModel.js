@@ -2,7 +2,8 @@ const mongoose = require('mongoose');
 
 const sensorSchema = new mongoose.Schema({
     a: {},
-    b: {}
+    b: {},
+    c: {},
 });
 
 const Sensor = mongoose.model('Sensor', sensorSchema);
