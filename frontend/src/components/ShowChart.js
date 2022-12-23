@@ -57,8 +57,17 @@ class ShowChart extends React.Component {
         );
     }
 
+    getChartType = () => {
+        return this.props.match.path === '/chart/hum/:id'
+            ? 'hum'
+            : this.props.match.params.id === '4'
+            ? 'tempOut'
+            : 'temp';
+    };
+
     render() {
         if (this.props.today) {
+            console.log('&&', this.props.today[getSensorName(this.props.match.params.id)]);
             return (
                 <ChartModal
                     data={[
@@ -67,7 +76,7 @@ class ShowChart extends React.Component {
                     ]}
                     xData={this.isNewChart() ? undefined : this.prepareTempToChart().dataTime}
                     yData={this.isNewChart() ? undefined : this.prepareTempToChart().dataTemp}
-                    type={this.props.match.path === '/chart/temp/:id' ? 'temp' : 'hum'}
+                    type={this.getChartType()}
                     actions={this.renderActions()}
                     onDismiss={() => this.props.history.push('/')}
                     isNewChart={this.isNewChart()}

@@ -14,7 +14,7 @@ const ChartModal = ({ data, xData, yData, type, actions, onDismiss, isNewChart }
                 <div className="header">Wykres - ostatnie 24h</div>
                 <div className="content">
                     <div className="chart-title">
-                        <h4>{type === 'temp' ? tempTitle : humTitle}</h4>
+                        <h4>{type === 'temp' || type === 'tempOut' ? tempTitle : humTitle}</h4>
                     </div>
                     {isNewChart ? <Rechart data={data} type={type} /> : <Chart temp={yData} time={xData} />}
                 </div>

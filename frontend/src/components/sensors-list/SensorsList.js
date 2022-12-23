@@ -3,20 +3,23 @@ import { trackPromise, usePromiseTracker } from 'react-promise-tracker';
 import { connect } from 'react-redux';
 import { fetchCovid, fetchCovidPoland, fetchName, fetchToday } from '../../actions';
 import Card from '../Card';
-import { CardExample } from '../card/Card';
 import CardExtended from '../CardExtended';
 import CardTempOut from '../CardTempOut';
 import { LoadingComponent } from '../LoadingComponent';
 import './SensorList.css';
 
-const SensorsList = ({ sensor01, sensor02, sensor03, fetchToday, fetchName, maxTemp, minTemp, names, history }) => {
-    // componentDidMount() {
-    //     trackPromise(props.fetchToday());
-    //     props.fetchName();
-    //     //props.fetchCovid();
-    //     // props.fetchCovidPoland();
-    // }
-
+const SensorsList = ({
+    sensor01,
+    sensor02,
+    sensor03,
+    sensor04,
+    fetchToday,
+    fetchName,
+    maxTemp,
+    minTemp,
+    names,
+    history,
+}) => {
     const { promiseInProgress } = usePromiseTracker();
     useEffect(() => {
         trackPromise(fetchToday());
@@ -65,7 +68,15 @@ const SensorsList = ({ sensor01, sensor02, sensor03, fetchToday, fetchName, maxT
                         id="4"
                         history={history}
                     />
-                    <CardExample />
+                    <Card
+                        data={sensor04[sensor04.length - 1]}
+                        maxTemp={maxTemp.sensor04}
+                        minTemp={minTemp.sensor04}
+                        title="Sensor B"
+                        id="5"
+                        history={history}
+                        name={names.b.name}
+                    />
                 </div>
             )}
         </>
@@ -78,6 +89,7 @@ const mapStateToProps = (state) => {
             sensor01: state.data.today.sensor01,
             sensor02: state.data.today.sensor02,
             sensor03: state.data.today.sensor03,
+            sensor04: state.data.today.sensor04,
             maxTemp: state.data.today.maxTemp,
             minTemp: state.data.today.minTemp,
             names: state.names,

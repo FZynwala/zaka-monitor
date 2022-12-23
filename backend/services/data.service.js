@@ -54,7 +54,7 @@ const postData = async (req, sensor) => {
             },
         };
 
-        if (sensorKey === 'sensor3') {
+        if (sensorKey === 'sensor03') {
             foundDay.maxTemp = {
                 ...foundDay.maxTemp,
                 tempOut: {
@@ -89,6 +89,7 @@ const getData = async () => {
                 sensor01: today.sensor01,
                 sensor02: today.sensor02,
                 sensor03: today.sensor03,
+                sensor04: today.sensor04,
                 date: today.date,
                 maxTemp: today.maxTemp,
                 minTemp: today.minTemp,
@@ -97,6 +98,7 @@ const getData = async () => {
                 sensor01: yesterday.sensor01,
                 sensor02: yesterday.sensor02,
                 sensor03: yesterday.sensor03,
+                sensor04: yesterday.sensor04,
                 date: yesterday.date,
                 maxTemp: yesterday.maxTemp,
                 minTemp: yesterday.minTemp,
@@ -108,6 +110,7 @@ const getData = async () => {
                 sensor01: today.sensor01,
                 sensor02: today.sensor02,
                 sensor03: today.sensor03,
+                sensor04: today.sensor04,
                 maxTemp: today.maxTemp,
                 minTemp: today.minTemp,
             },
@@ -162,7 +165,7 @@ const getMaxMinTemp = (foundDay, sensorKey) => {
             if (parseFloat(obj.tempOut) > parseFloat(maxTempOut.temp)) {
                 maxTempOut = { temp: obj.tempOut, time: obj.time };
             }
-            if (parseFloat(obj.temp) < parseFloat(minTempOut.temp)) {
+            if (parseFloat(obj.tempOut) < parseFloat(minTempOut.temp)) {
                 minTempOut = { temp: obj.tempOut, time: obj.time };
             }
         }
