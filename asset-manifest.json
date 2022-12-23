@@ -1,25 +1,25 @@
 {
   "files": {
-    "main.css": "/static/css/main.2f841ec1.chunk.css",
-    "main.js": "/static/js/main.887a4ba6.chunk.js",
-    "main.js.map": "/static/js/main.887a4ba6.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.bce919bb.js",
-    "runtime-main.js.map": "/static/js/runtime-main.bce919bb.js.map",
-    "static/css/2.d0946657.chunk.css": "/static/css/2.d0946657.chunk.css",
-    "static/js/2.30c123e0.chunk.js": "/static/js/2.30c123e0.chunk.js",
-    "static/js/2.30c123e0.chunk.js.map": "/static/js/2.30c123e0.chunk.js.map",
-    "index.html": "/index.html",
-    "precache-manifest.a56c8211b367118ea3dbe02ad407e017.js": "/precache-manifest.a56c8211b367118ea3dbe02ad407e017.js",
-    "service-worker.js": "/service-worker.js",
-    "static/css/2.d0946657.chunk.css.map": "/static/css/2.d0946657.chunk.css.map",
-    "static/css/main.2f841ec1.chunk.css.map": "/static/css/main.2f841ec1.chunk.css.map",
-    "static/js/2.30c123e0.chunk.js.LICENSE.txt": "/static/js/2.30c123e0.chunk.js.LICENSE.txt",
-    "static/media/semantic.min.css": "/static/media/outline-icons.ef60a4f6.woff"
+    "main.css": "/zaka-monitor/static/css/main.2f841ec1.chunk.css",
+    "main.js": "/zaka-monitor/static/js/main.887a4ba6.chunk.js",
+    "main.js.map": "/zaka-monitor/static/js/main.887a4ba6.chunk.js.map",
+    "runtime-main.js": "/zaka-monitor/static/js/runtime-main.a49bec43.js",
+    "runtime-main.js.map": "/zaka-monitor/static/js/runtime-main.a49bec43.js.map",
+    "static/css/2.e0604aed.chunk.css": "/zaka-monitor/static/css/2.e0604aed.chunk.css",
+    "static/js/2.b3273a3f.chunk.js": "/zaka-monitor/static/js/2.b3273a3f.chunk.js",
+    "static/js/2.b3273a3f.chunk.js.map": "/zaka-monitor/static/js/2.b3273a3f.chunk.js.map",
+    "index.html": "/zaka-monitor/index.html",
+    "precache-manifest.61c13b906c49f80b1c5a65a299596bc8.js": "/zaka-monitor/precache-manifest.61c13b906c49f80b1c5a65a299596bc8.js",
+    "service-worker.js": "/zaka-monitor/service-worker.js",
+    "static/css/2.e0604aed.chunk.css.map": "/zaka-monitor/static/css/2.e0604aed.chunk.css.map",
+    "static/css/main.2f841ec1.chunk.css.map": "/zaka-monitor/static/css/main.2f841ec1.chunk.css.map",
+    "static/js/2.b3273a3f.chunk.js.LICENSE.txt": "/zaka-monitor/static/js/2.b3273a3f.chunk.js.LICENSE.txt",
+    "static/media/semantic.min.css": "/zaka-monitor/static/media/outline-icons.ef60a4f6.woff"
   },
   "entrypoints": [
-    "static/js/runtime-main.bce919bb.js",
-    "static/css/2.d0946657.chunk.css",
-    "static/js/2.30c123e0.chunk.js",
+    "static/js/runtime-main.a49bec43.js",
+    "static/css/2.e0604aed.chunk.css",
+    "static/js/2.b3273a3f.chunk.js",
     "static/css/main.2f841ec1.chunk.css",
     "static/js/main.887a4ba6.chunk.js"
   ]
