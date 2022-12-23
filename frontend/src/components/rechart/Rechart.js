@@ -21,7 +21,7 @@ export const Rechart = ({ data, type }) => {
                         textAnchor={'end'}
                         allowDataOverflow={true}
                     />
-                    <Tooltip />
+                    <Tooltip labelFormatter={(label) => moment.unix(label).format('HH:MM')} />
                     <Line
                         type="natural"
                         dataKey={type}
