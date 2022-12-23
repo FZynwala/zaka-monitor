@@ -55,15 +55,19 @@ const Card = ({ data, maxTemp, minTemp, title, id, history, name }) => {
                     <div className="header">{name}</div>
                     <div className="meta">ID czujnika: {id}</div>
                     <div className="description">
-                        Wilgotność: {hum ? `${hum}%` : '-'} <br />
+                        Wilgotność: {hum ? `${hum}%` : '--'} <br />
                         <span className="max-data">
-                            Max: {`${renderMaxTemp(maxTemp).maxTemp} \u2103`}
-                            <span className="time">o godz: {`${renderMaxTemp(maxTemp).time}`} </span>
+                            Max: {renderMaxTemp(maxTemp).maxTemp ? `${renderMaxTemp(maxTemp).maxTemp} \u2103` : '--'}
+                            <span className="time">
+                                o godz: {renderMaxTemp(maxTemp).time ? `${renderMaxTemp(maxTemp).time}` : '--:--'}{' '}
+                            </span>
                             <br />
                         </span>
                         <span className="min-data">
-                            Min: {`${renderMinTemp(minTemp).minTemp} \u2103`}
-                            <span className="time">o godz: {`${renderMinTemp(minTemp).time}`} </span>
+                            Min: {renderMinTemp(minTemp).minTemp ? `${renderMinTemp(minTemp).minTemp} \u2103` : '--'}
+                            <span className="time">
+                                o godz: {renderMinTemp(minTemp).time ? `${renderMinTemp(minTemp).time}` : '--:--'}{' '}
+                            </span>
                             <br />
                         </span>
                         Czas: {`${formatTime(time)}`} <br />

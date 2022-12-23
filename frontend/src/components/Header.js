@@ -12,8 +12,10 @@ class Header extends React.Component {
     render() {
         return (
             <div className="">
-                <h2 className="ui center aligned icon header font" style={{ marginTop: '5px' }}>
-                    <i className="chart line icon char-icon-color"></i>
+                <h2 className="ui center aligned header font" style={{ marginTop: '5px' }}>
+                    <div className="image-header">
+                        <img src="./zaka-monitor-logo.png" width={150} height={91} />
+                    </div>
                     ZAKA MONITOR
                 </h2>
                 <div className="button-margins">

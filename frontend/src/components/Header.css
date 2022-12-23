@@ -8,18 +8,24 @@
 }
 
 .font-color {
-    color: #2BAD60;
+    color: #2bad60;
 }
 
 .u-mr {
-    margin: 0px!important;
+    margin: 0px !important;
 }
 
 .font {
-    font-family: 'Fredoka One'!important;
-    color: #aeb1ba!important;
+    font-family: 'Fredoka One' !important;
+    color: #aeb1ba !important;
 }
 
 .char-icon-color {
     color: #b08819;
+}
+
+.image-header {
+    /* display: flex;
+    justify-content: center; */
+    text-align: center;
 }
