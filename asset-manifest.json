@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/zaka-monitor/static/css/main.2f841ec1.chunk.css",
-    "main.js": "/zaka-monitor/static/js/main.d4d5e8bc.chunk.js",
-    "main.js.map": "/zaka-monitor/static/js/main.d4d5e8bc.chunk.js.map",
+    "main.js": "/zaka-monitor/static/js/main.78206ef3.chunk.js",
+    "main.js.map": "/zaka-monitor/static/js/main.78206ef3.chunk.js.map",
     "runtime-main.js": "/zaka-monitor/static/js/runtime-main.a49bec43.js",
     "runtime-main.js.map": "/zaka-monitor/static/js/runtime-main.a49bec43.js.map",
     "static/css/2.e0604aed.chunk.css": "/zaka-monitor/static/css/2.e0604aed.chunk.css",
     "static/js/2.b3273a3f.chunk.js": "/zaka-monitor/static/js/2.b3273a3f.chunk.js",
     "static/js/2.b3273a3f.chunk.js.map": "/zaka-monitor/static/js/2.b3273a3f.chunk.js.map",
     "index.html": "/zaka-monitor/index.html",
-    "precache-manifest.992c597708dc2782711739671d7f5683.js": "/zaka-monitor/precache-manifest.992c597708dc2782711739671d7f5683.js",
+    "precache-manifest.6ed9e615ca362b1ec76e0bf02b4a9cc5.js": "/zaka-monitor/precache-manifest.6ed9e615ca362b1ec76e0bf02b4a9cc5.js",
     "service-worker.js": "/zaka-monitor/service-worker.js",
     "static/css/2.e0604aed.chunk.css.map": "/zaka-monitor/static/css/2.e0604aed.chunk.css.map",
     "static/css/main.2f841ec1.chunk.css.map": "/zaka-monitor/static/css/main.2f841ec1.chunk.css.map",
@@ -21,6 +21,6 @@
     "static/css/2.e0604aed.chunk.css",
     "static/js/2.b3273a3f.chunk.js",
     "static/css/main.2f841ec1.chunk.css",
-    "static/js/main.d4d5e8bc.chunk.js"
+    "static/js/main.78206ef3.chunk.js"
   ]
 }
