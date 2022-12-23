@@ -8,7 +8,7 @@ import ChartModal from './ChartModal';
 import './ShowChart.css';
 
 class ShowChart extends React.Component {
-    dateWithMixedTimeType = moment('19.12.2022', 'DD.MM.YYYY');
+    dateWithMixedTimeType = moment('23.12.2022', 'DD.MM.YYYY');
 
     isNewChart = () => (moment(this.props.today.date, 'DD.MM.YYYY').isAfter(this.dateWithMixedTimeType) ? true : false);
     prepareTempToChart = () => {

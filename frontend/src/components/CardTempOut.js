@@ -54,13 +54,15 @@ class Card extends React.Component {
                     <div className="meta">ID czujnika: {this.props.id}</div>
                     <div className="description">
                         <span className="max-data">
-                            Max: {`${this.renderMaxTemp().maxTemp} \u2103`}
+                            Max: {this.renderMaxTemp().maxTemp ? `${this.renderMaxTemp().maxTemp} \u2103` : '--'}
                             <span className="time">o godz: {`${this.renderMaxTemp().time}`} </span>
                             <br />
                         </span>
                         <span className="min-data">
-                            Min: {`${this.renderMinTemp().minTemp} \u2103`}
-                            <span className="time">o godz: {`${this.renderMinTemp().time}`} </span>
+                            Min: {this.renderMinTemp().minTemp ? `${this.renderMinTemp().minTemp} \u2103` : '--'}
+                            <span className="time">
+                                o godz: {this.renderMinTemp().time ? `${this.renderMinTemp().time}` : '--:--'}{' '}
+                            </span>
                             <br />
                         </span>
                         Czas: {`${formatTime(time)}`} <br />
