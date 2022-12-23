@@ -67,7 +67,6 @@ class ShowChart extends React.Component {
 
     render() {
         if (this.props.today) {
-            console.log('&&', this.props.today[getSensorName(this.props.match.params.id)]);
             return (
                 <ChartModal
                     data={[
@@ -97,7 +96,6 @@ class ShowChart extends React.Component {
 }
 
 const prepareChartData = (data) => {
-    console.log('%DATA', data);
     return data.map((obj) => {
         return { ...obj, time: moment(obj.time).toDate().getTime() };
     });
