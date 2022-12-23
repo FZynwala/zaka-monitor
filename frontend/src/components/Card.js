@@ -32,6 +32,8 @@ const Card = ({ data, maxTemp, minTemp, title, id, history, name }) => {
             return 'yellow';
         } else if (id === '2') {
             return 'blue';
+        } else if (id === '5') {
+            return 'purple';
         }
     };
 

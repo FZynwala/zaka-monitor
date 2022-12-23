@@ -75,7 +75,7 @@ const SensorsList = ({
                         title="Sensor B"
                         id="5"
                         history={history}
-                        name={names.b.name}
+                        name={names.c.name}
                     />
                 </div>
             )}
