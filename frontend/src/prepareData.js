@@ -3,7 +3,7 @@ import moment from 'moment';
 export default (tSensor, ySensor, param) => {
     const mappedTSensor = tSensor.map((obj) => {
         if (obj.time.length > 5) {
-            return { ...obj, time: moment(obj.time).format('HH:MM') };
+            return { ...obj, time: moment(obj.time).format('HH:mm') };
         } else {
             return obj;
         }
@@ -11,7 +11,7 @@ export default (tSensor, ySensor, param) => {
 
     const mappedYSensor = ySensor.map((obj) => {
         if (obj.time.length > 5) {
-            return { ...obj, time: moment(obj.time).format('HH:MM') };
+            return { ...obj, time: moment(obj.time).format('HH:mm') };
         } else {
             return obj;
         }
