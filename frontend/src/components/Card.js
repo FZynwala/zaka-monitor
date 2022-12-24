@@ -10,7 +10,7 @@ const Card = ({ data, maxTemp, minTemp, title, id, history, name }) => {
     const renderMaxTemp = (temp) => {
         if (temp) {
             const maxTemp = temp.maxTemp;
-            const time = moment(temp.time).format('HH:MM');
+            const time = moment(temp.time).format('HH:mm');
             return { maxTemp, time };
         }
 
@@ -20,7 +20,7 @@ const Card = ({ data, maxTemp, minTemp, title, id, history, name }) => {
     const renderMinTemp = (temp) => {
         if (temp) {
             const minTemp = temp.minTemp;
-            const time = moment(temp.time).format('HH:MM');
+            const time = moment(temp.time).format('HH:mm');
             return { minTemp, time };
         }
 
