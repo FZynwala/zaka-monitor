@@ -33,7 +33,7 @@ export const Rechart = ({ data, type }) => {
                         strokeWidth={2}
                         animationEasing={'ease-in-out'}
                     />
-                    <YAxis dataKey={type} name={type} domain={['auto', 'dataMax']} />
+                    <YAxis dataKey={type} name={type} domain={['dataMin', 'dataMax']} />
                 </LineChart>
             </ResponsiveContainer>
         </div>
