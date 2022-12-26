@@ -70,8 +70,14 @@ class ShowChart extends React.Component {
             return (
                 <ChartModal
                     data={[
-                        ...prepareChartData(this.props.yesterday[getSensorName(this.props.match.params.id)]),
-                        ...prepareChartData(this.props.today[getSensorName(this.props.match.params.id)]),
+                        ...prepareChartData(
+                            this.props.yesterday[getSensorName(this.props.match.params.id)],
+                            getSensorName(this.props.match.params.id),
+                        ),
+                        ...prepareChartData(
+                            this.props.today[getSensorName(this.props.match.params.id)],
+                            getSensorName(this.props.match.params.id),
+                        ),
                     ]}
                     xData={this.isNewChart() ? undefined : this.prepareTempToChart().dataTime}
                     yData={this.isNewChart() ? undefined : this.prepareTempToChart().dataTemp}
@@ -95,9 +101,18 @@ class ShowChart extends React.Component {
     }
 }
 
-const prepareChartData = (data) => {
+const prepareChartData = (data, sensorName) => {
     return data.map((obj) => {
-        return { ...obj, time: moment(obj.time).toDate().getTime() };
+        if (sensorName === 'sensor03') {
+            return {
+                ...obj,
+                temp: Number(obj.temp),
+                tempOut: Number(obj.tempOut),
+                time: moment(obj.time).toDate().getTime(),
+            };
+        } else {
+            return { ...obj, time: moment(obj.time).toDate().getTime() };
+        }
     });
 };
 
