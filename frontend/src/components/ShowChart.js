@@ -111,7 +111,7 @@ const prepareChartData = (data, sensorName) => {
                 time: moment(obj.time).toDate().getTime(),
             };
         } else {
-            return { ...obj, time: moment(obj.time).toDate().getTime() };
+            return { ...obj, temp: Number(obj.temp), time: moment(obj.time).toDate().getTime() };
         }
     });
 };
