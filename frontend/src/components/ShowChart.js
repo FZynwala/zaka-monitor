@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { fetchToday } from '../actions';
 import prepareData from '../prepareData';
+import { prepareRechartData } from '../utils';
 import ChartModal from './ChartModal';
 import './ShowChart.css';
 
@@ -70,11 +71,11 @@ class ShowChart extends React.Component {
             return (
                 <ChartModal
                     data={[
-                        ...prepareChartData(
+                        ...prepareRechartData(
                             this.props.yesterday[getSensorName(this.props.match.params.id)],
                             getSensorName(this.props.match.params.id),
                         ),
-                        ...prepareChartData(
+                        ...prepareRechartData(
                             this.props.today[getSensorName(this.props.match.params.id)],
                             getSensorName(this.props.match.params.id),
                         ),
@@ -100,21 +101,6 @@ class ShowChart extends React.Component {
         }
     }
 }
-
-const prepareChartData = (data, sensorName) => {
-    return data.map((obj) => {
-        if (sensorName === 'sensor03') {
-            return {
-                ...obj,
-                temp: Number(obj.temp),
-                tempOut: Number(obj.tempOut),
-                time: moment(obj.time).toDate().getTime(),
-            };
-        } else {
-            return { ...obj, temp: Number(obj.temp), time: moment(obj.time).toDate().getTime() };
-        }
-    });
-};
 
 const getSensorName = (id) => {
     switch (id) {
