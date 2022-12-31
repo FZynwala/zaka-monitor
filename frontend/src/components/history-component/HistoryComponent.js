@@ -5,8 +5,7 @@ import SemanticDatepicker from 'react-semantic-ui-datepickers';
 import 'react-semantic-ui-datepickers/dist/react-semantic-ui-datepickers.css';
 import { Checkbox, Form, Grid, Header } from 'semantic-ui-react';
 import { fetchDayByDate, fetchName } from '../../actions';
-import { isNewChart, prepareRechartData } from '../../utils';
-import Chart from '../chart';
+import { isOldData, prepareRechartData } from '../../utils';
 import { Rechart } from '../rechart/Rechart';
 import './HistoryComponent.css';
 
@@ -19,11 +18,11 @@ const HistoryComponent = ({ fetchDayByDate, fetchName, day, names }) => {
         isSensor4: false,
     });
     const [showForm, setShowForm] = useState(false);
-    const [isOldData, setIsOldData] = useState(false);
+    const [isOldDataFormat, setIsOldDataFormat] = useState(false);
 
     const handleDateChange = async (event, data) => {
-        if (!isNewChart(data.value)) setIsOldData(true);
-        else setIsOldData(false);
+        if (isOldData(data.value)) setIsOldDataFormat(true);
+        else setIsOldDataFormat(false);
 
         await fetchDayByDate(moment(data.value).format('D.M.YYYY'));
         setShowForm(true);
@@ -106,14 +105,11 @@ const HistoryComponent = ({ fetchDayByDate, fetchName, day, names }) => {
                         <Header textAlign={'center'} dividing={true} className={'u-mb-non'}>
                             {names.a.name}
                         </Header>
-                        {isOldData ? (
-                            <Chart
-                                temp={day.sensor01.map((obj) => obj.temp)}
-                                time={day.sensor01.map((obj) => obj.time)}
-                            />
-                        ) : (
-                            <Rechart data={prepareRechartData(day.sensor01)} type={'temp'} isHistory={true} />
-                        )}
+                        <Rechart
+                            data={prepareRechartData(day.sensor01, 'sensor01', isOldDataFormat)}
+                            type={'temp'}
+                            isHistory={true}
+                        />
                     </>
                 )}
                 {values.isSensor2 && (
@@ -121,14 +117,11 @@ const HistoryComponent = ({ fetchDayByDate, fetchName, day, names }) => {
                         <Header textAlign={'center'} dividing={true} className={'u-mb-non'}>
                             {names.b.name}
                         </Header>
-                        {isOldData ? (
-                            <Chart
-                                temp={day.sensor02.map((obj) => obj.temp)}
-                                time={day.sensor02.map((obj) => obj.time)}
-                            />
-                        ) : (
-                            <Rechart data={prepareRechartData(day.sensor02)} type={'temp'} isHistory={true} />
-                        )}
+                        <Rechart
+                            data={prepareRechartData(day.sensor02, 'sensor02', isOldDataFormat)}
+                            type={'temp'}
+                            isHistory={true}
+                        />
                     </>
                 )}
                 {values.isSensor3 && (
@@ -136,18 +129,11 @@ const HistoryComponent = ({ fetchDayByDate, fetchName, day, names }) => {
                         <Header textAlign={'center'} dividing={true} className={'u-mb-non'}>
                             Garaż
                         </Header>
-                        {isOldData ? (
-                            <Chart
-                                temp={day.sensor03.map((obj) => obj.temp)}
-                                time={day.sensor03.map((obj) => obj.time)}
-                            />
-                        ) : (
-                            <Rechart
-                                data={prepareRechartData(day.sensor03, 'sensor03')}
-                                type={'temp'}
-                                isHistory={true}
-                            />
-                        )}
+                        <Rechart
+                            data={prepareRechartData(day.sensor03, 'sensor03', isOldDataFormat)}
+                            type={'temp'}
+                            isHistory={true}
+                        />
                     </>
                 )}
                 {values.isSensor4 && (
@@ -155,14 +141,11 @@ const HistoryComponent = ({ fetchDayByDate, fetchName, day, names }) => {
                         <Header textAlign={'center'} dividing={true} className={'u-mb-non'}>
                             {names.c.name}
                         </Header>
-                        {isOldData ? (
-                            <Chart
-                                temp={day.sensor04.map((obj) => obj.temp)}
-                                time={day.sensor04.map((obj) => obj.time)}
-                            />
-                        ) : (
-                            <Rechart data={prepareRechartData(day.sensor04)} type={'temp'} isHistory={true} />
-                        )}
+                        <Rechart
+                            data={prepareRechartData(day.sensor04, 'sensor04', isOldDataFormat)}
+                            type={'temp'}
+                            isHistory={true}
+                        />
                     </>
                 )}
                 {values.isTempOut && (
@@ -170,18 +153,11 @@ const HistoryComponent = ({ fetchDayByDate, fetchName, day, names }) => {
                         <Header textAlign={'center'} dividing={true} className={'u-mb-non'}>
                             Na zewnątrz
                         </Header>
-                        {isOldData ? (
-                            <Chart
-                                temp={day.sensor03.map((obj) => obj.tempOut)}
-                                time={day.sensor03.map((obj) => obj.time)}
-                            />
-                        ) : (
-                            <Rechart
-                                data={prepareRechartData(day.sensor03, 'sensor03')}
-                                type={'tempOut'}
-                                isHistory={true}
-                            />
-                        )}
+                        <Rechart
+                            data={prepareRechartData(day.sensor03, 'sensor03', isOldDataFormat)}
+                            type={'tempOut'}
+                            isHistory={true}
+                        />
                     </>
                 )}
             </div>

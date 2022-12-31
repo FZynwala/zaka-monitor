@@ -1,17 +1,13 @@
-import moment from 'moment';
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { fetchToday } from '../actions';
 import prepareData from '../prepareData';
-import { prepareRechartData } from '../utils';
+import { isOldData, prepareRechartData } from '../utils';
 import ChartModal from './ChartModal';
 import './ShowChart.css';
 
 class ShowChart extends React.Component {
-    dateWithMixedTimeType = moment('23.12.2022', 'DD.MM.YYYY');
-
-    isNewChart = () => (moment(this.props.today.date, 'DD.MM.YYYY').isAfter(this.dateWithMixedTimeType) ? true : false);
     prepareTempToChart = () => {
         if (this.props.today) {
             if (this.props.match.path === '/chart/temp/:id') {
@@ -74,18 +70,17 @@ class ShowChart extends React.Component {
                         ...prepareRechartData(
                             this.props.yesterday[getSensorName(this.props.match.params.id)],
                             getSensorName(this.props.match.params.id),
+                            isOldData(this.props.today.date),
                         ),
                         ...prepareRechartData(
                             this.props.today[getSensorName(this.props.match.params.id)],
                             getSensorName(this.props.match.params.id),
+                            isOldData(this.props.today.date),
                         ),
                     ]}
-                    xData={this.isNewChart() ? undefined : this.prepareTempToChart().dataTime}
-                    yData={this.isNewChart() ? undefined : this.prepareTempToChart().dataTemp}
                     type={this.getChartType()}
                     actions={this.renderActions()}
                     onDismiss={() => this.props.history.push('/')}
-                    isNewChart={this.isNewChart()}
                 />
             );
         } else {
