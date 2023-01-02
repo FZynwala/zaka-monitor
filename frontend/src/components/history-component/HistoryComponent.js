@@ -1,7 +1,6 @@
 import moment from 'moment';
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-import { useHistory } from 'react-router-dom';
 import SemanticDatepicker from 'react-semantic-ui-datepickers';
 import 'react-semantic-ui-datepickers/dist/react-semantic-ui-datepickers.css';
 import { Checkbox, Form, Grid, Header } from 'semantic-ui-react';
@@ -27,8 +26,6 @@ const HistoryComponent = ({ fetchDayByDate, postCurrentPath, day, names, match }
         isTempOut: false,
         isSensor4: false,
     });
-
-    const history = useHistory();
 
     useEffect(() => {
         postCurrentPath(match.path);
@@ -149,7 +146,7 @@ const HistoryComponent = ({ fetchDayByDate, postCurrentPath, day, names, match }
                         />
                     </>
                 )}
-                {values.isSensor3 && (
+                {values.isSensor3 && showCheckboxes.isSensor3 && (
                     <>
                         <Header textAlign={'center'} dividing={true} className={'u-mb-non'}>
                             Garaż
@@ -161,7 +158,7 @@ const HistoryComponent = ({ fetchDayByDate, postCurrentPath, day, names, match }
                         />
                     </>
                 )}
-                {values.isSensor4 && (
+                {values.isSensor4 && showCheckboxes.isSensor4 && (
                     <>
                         <Header textAlign={'center'} dividing={true} className={'u-mb-non'}>
                             {names.c.name}
@@ -173,7 +170,7 @@ const HistoryComponent = ({ fetchDayByDate, postCurrentPath, day, names, match }
                         />
                     </>
                 )}
-                {values.isTempOut && (
+                {values.isTempOut && showCheckboxes.isTempOut && (
                     <>
                         <Header textAlign={'center'} dividing={true} className={'u-mb-non'}>
                             Na zewnątrz
