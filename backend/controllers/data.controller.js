@@ -45,12 +45,22 @@ const getData = async (req, res, next) => {
     }
 };
 
+const getOneDayData = async (req, res, next) => {
+    try {
+        const response = await dataService.getOneDayData(req.body);
+        res.send(response).status(200);
+    } catch (e) {
+        res.sendStatus(500).send(e);
+    }
+};
+
 module.exports = {
     postSensor01Data,
     postSensor02Data,
     postSensor03Data,
     postSensor04Data,
     getData,
+    getOneDayData,
 };
 
 //const alerts = await checkAlert('Gora');

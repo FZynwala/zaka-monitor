@@ -1,10 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Chart from './chart';
 import './ChartModal.css';
 import { Rechart } from './rechart/Rechart';
 
-const ChartModal = ({ data, xData, yData, type, actions, onDismiss, isNewChart }) => {
+const ChartModal = ({ data, type, actions, onDismiss }) => {
     const tempTitle = 'Temperatura w \u2103';
     const humTitle = 'Wilgotność w %';
 
@@ -16,7 +15,7 @@ const ChartModal = ({ data, xData, yData, type, actions, onDismiss, isNewChart }
                     <div className="chart-title">
                         <h4>{type === 'temp' || type === 'tempOut' ? tempTitle : humTitle}</h4>
                     </div>
-                    {isNewChart ? <Rechart data={data} type={type} /> : <Chart temp={yData} time={xData} />}
+                    <Rechart data={data} type={type} />
                 </div>
                 <div className="actions">{actions}</div>
             </div>

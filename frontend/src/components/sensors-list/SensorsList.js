@@ -76,7 +76,9 @@ const SensorsList = ({
                         id="5"
                         history={history}
                         name={names.c.name}
+                        className={'u-mb'}
                     />
+                    <div className="empty-space"></div>
                 </div>
             )}
         </>

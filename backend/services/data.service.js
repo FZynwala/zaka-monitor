@@ -120,6 +120,12 @@ const getData = async () => {
     return response;
 };
 
+const getOneDayData = async (body) => {
+    const response = await dayModel.Day.findOne({ date: body.date });
+
+    return response;
+};
+
 const getSensorKey = (sensor) => {
     switch (sensor) {
         case 's01':
@@ -182,4 +188,5 @@ const getMaxMinTemp = (foundDay, sensorKey) => {
 module.exports = {
     postData,
     getData,
+    getOneDayData,
 };

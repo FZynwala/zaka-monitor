@@ -1,16 +1,13 @@
-import moment from 'moment';
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { fetchToday } from '../actions';
 import prepareData from '../prepareData';
+import { isOldData, prepareRechartData } from '../utils';
 import ChartModal from './ChartModal';
 import './ShowChart.css';
 
 class ShowChart extends React.Component {
-    dateWithMixedTimeType = moment('23.12.2022', 'DD.MM.YYYY');
-
-    isNewChart = () => (moment(this.props.today.date, 'DD.MM.YYYY').isAfter(this.dateWithMixedTimeType) ? true : false);
     prepareTempToChart = () => {
         if (this.props.today) {
             if (this.props.match.path === '/chart/temp/:id') {
@@ -70,21 +67,20 @@ class ShowChart extends React.Component {
             return (
                 <ChartModal
                     data={[
-                        ...prepareChartData(
+                        ...prepareRechartData(
                             this.props.yesterday[getSensorName(this.props.match.params.id)],
                             getSensorName(this.props.match.params.id),
+                            isOldData(this.props.today.date),
                         ),
-                        ...prepareChartData(
+                        ...prepareRechartData(
                             this.props.today[getSensorName(this.props.match.params.id)],
                             getSensorName(this.props.match.params.id),
+                            isOldData(this.props.today.date),
                         ),
                     ]}
-                    xData={this.isNewChart() ? undefined : this.prepareTempToChart().dataTime}
-                    yData={this.isNewChart() ? undefined : this.prepareTempToChart().dataTemp}
                     type={this.getChartType()}
                     actions={this.renderActions()}
                     onDismiss={() => this.props.history.push('/')}
-                    isNewChart={this.isNewChart()}
                 />
             );
         } else {
@@ -100,21 +96,6 @@ class ShowChart extends React.Component {
         }
     }
 }
-
-const prepareChartData = (data, sensorName) => {
-    return data.map((obj) => {
-        if (sensorName === 'sensor03') {
-            return {
-                ...obj,
-                temp: Number(obj.temp),
-                tempOut: Number(obj.tempOut),
-                time: moment(obj.time).toDate().getTime(),
-            };
-        } else {
-            return { ...obj, temp: Number(obj.temp), time: moment(obj.time).toDate().getTime() };
-        }
-    });
-};
 
 const getSensorName = (id) => {
     switch (id) {
