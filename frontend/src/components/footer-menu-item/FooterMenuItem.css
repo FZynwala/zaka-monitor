@@ -1,0 +1,11 @@
+.footer-menu-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    width: 33%;
+    font-family: 'Fredoka One';
+    color: #aeb1ba;
+    padding: 5px !important;
+}

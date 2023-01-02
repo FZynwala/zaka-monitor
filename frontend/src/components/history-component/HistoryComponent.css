@@ -1,0 +1,62 @@
+.layout {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.u-mt {
+    margin-top: 5%;
+}
+
+.u-mt-l {
+    margin-top: 7%;
+}
+
+.u-mb {
+    margin-bottom: 5%;
+}
+
+.u-mb-non {
+    margin-bottom: 0px !important;
+}
+
+.u-mr {
+    margin-right: 5% !important;
+}
+
+.font-stylesd {
+    font-family: 'Fredoka One';
+    color: #aeb1ba !important;
+}
+
+.rechart-container {
+    width: 100%;
+    max-width: 100% !important;
+}
+
+.empty-space-large {
+    height: 4rem;
+    width: 90%;
+}
+
+.ct-label {
+    color: #aeb1ba;
+}
+
+.ct-grid {
+    stroke: #aeb1ba;
+}
+
+.u-text-color {
+    color: #aeb1ba !important;
+}
+
+.ui.checkbox label {
+    color: #aeb1ba;
+    font-family: Lato, 'Helvetica Neue', Arial, Helvetica, sans-serif;
+}
+
+.ui.checkbox input:focus ~ label {
+    color: #aeb1ba;
+}

@@ -24,6 +24,7 @@ router.post('/s03/:temp/:humidity/:door/:light/:tempOut', dataController.postSen
 router.post('/s04/:temp/:humidity', dataController.postSensor04Data);
 
 router.get('/', dataController.getData);
+router.post('/day', dataController.getOneDayData);
 
 router.post('/notifications', async (req, res) => {
     var params = {

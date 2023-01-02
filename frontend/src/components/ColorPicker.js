@@ -9,7 +9,6 @@ class ColorPicker extends React.Component {
 
     onItemClick = (e) => {
         this.color = e.target.className.slice(5);
-        console.log(this.color);
     }
 
     onSaveClick = () => {
