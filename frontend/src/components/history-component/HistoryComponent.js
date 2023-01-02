@@ -1,11 +1,13 @@
 import moment from 'moment';
 import React, { useEffect, useState } from 'react';
+import { trackPromise, usePromiseTracker } from 'react-promise-tracker';
 import { connect } from 'react-redux';
 import SemanticDatepicker from 'react-semantic-ui-datepickers';
 import 'react-semantic-ui-datepickers/dist/react-semantic-ui-datepickers.css';
 import { Checkbox, Form, Grid, Header } from 'semantic-ui-react';
 import { fetchDayByDate, fetchName, postCurrentPath } from '../../actions';
 import { firstSensor4Date, firstTempOutDate, isOldData, prepareRechartData } from '../../utils';
+import { LoadingComponent } from '../LoadingComponent';
 import { Rechart } from '../rechart/Rechart';
 import './HistoryComponent.css';
 
@@ -27,6 +29,8 @@ const HistoryComponent = ({ fetchDayByDate, postCurrentPath, day, names, match }
         isSensor4: false,
     });
 
+    const { promiseInProgress } = usePromiseTracker();
+
     useEffect(() => {
         postCurrentPath(match.path);
     }, []);
@@ -35,7 +39,7 @@ const HistoryComponent = ({ fetchDayByDate, postCurrentPath, day, names, match }
         if (isOldData(data.value)) setIsOldDataFormat(true);
         else setIsOldDataFormat(false);
 
-        await fetchDayByDate(moment(data.value).format('D.M.YYYY'));
+        await trackPromise(fetchDayByDate(moment(data.value).format('D.M.YYYY')));
         setShowForm(true);
         setShowCheckboxes({
             isSensor1: true,
@@ -48,7 +52,9 @@ const HistoryComponent = ({ fetchDayByDate, postCurrentPath, day, names, match }
 
     if (!names.a) return null;
 
-    return (
+    return promiseInProgress ? (
+        <LoadingComponent />
+    ) : (
         <div className="layout u-mt">
             <Header as={'h2'} className={'u-text-color layout'}>
                 <span className="u-mt-l">Historia</span>
