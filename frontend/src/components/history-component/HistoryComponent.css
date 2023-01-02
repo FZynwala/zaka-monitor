@@ -9,6 +9,10 @@
     margin-top: 5%;
 }
 
+.u-mt-l {
+    margin-top: 7%;
+}
+
 .u-mb {
     margin-bottom: 5%;
 }
@@ -16,6 +20,11 @@
 .u-mb-non {
     margin-bottom: 0px !important;
 }
+
+.u-mr {
+    margin-right: 5% !important;
+}
+
 .font-stylesd {
     font-family: 'Fredoka One';
     color: #aeb1ba !important;

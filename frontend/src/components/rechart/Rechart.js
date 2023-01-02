@@ -4,7 +4,7 @@ import React from 'react';
 
 import { CartesianGrid, Legend, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
 
-export const Rechart = ({ data, type, isHistory = false }) => {
+export const Rechart = ({ data, type, isHistory = false, isTempOut = false }) => {
     const xBegin = isHistory ? 'dataMin' : moment().subtract(1, 'days').toDate().getTime();
     const tickColor = '#aeb1ba';
 
@@ -45,7 +45,7 @@ export const Rechart = ({ data, type, isHistory = false }) => {
                         name={type}
                         yAxisId={'yTemp'}
                     />
-                    {isHistory && (
+                    {isHistory && !isTempOut && (
                         <>
                             <Line
                                 type="natural"

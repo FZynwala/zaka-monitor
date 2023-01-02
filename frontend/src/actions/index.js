@@ -1,7 +1,15 @@
 import covid from '../api/covid';
 import covidPoland from '../api/covidPoland';
 import data from '../api/data';
-import { FETCH_COVID, FETCH_COVID_PL, FETCH_DAY_BY_DATE, FETCH_NAME, FETCH_TODAY, POST_NAME } from './types';
+import {
+    CURRENT_PATH,
+    FETCH_COVID,
+    FETCH_COVID_PL,
+    FETCH_DAY_BY_DATE,
+    FETCH_NAME,
+    FETCH_TODAY,
+    POST_NAME,
+} from './types';
 
 export const fetchToday = () => async (dispatch) => {
     const response = await data.get('/');
@@ -35,4 +43,8 @@ export const fetchCovidPoland = () => async (dispatch) => {
     const response = await covidPoland.get('/');
 
     dispatch({ type: FETCH_COVID_PL, payload: response.data });
+};
+
+export const postCurrentPath = (path) => async (dispatch) => {
+    dispatch({ type: CURRENT_PATH, payload: path });
 };

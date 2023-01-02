@@ -3,6 +3,7 @@ import { reducer as formReducer } from 'redux-form';
 import fetchCovidReducer from './fetchCovidReducer';
 import fetchDayByDateReducer from './fetchDayByDateReducer';
 import fetchDayReducer from './fetchDayReducer';
+import pathReducer from './pathReducer';
 import sensorNamesReducer from './sensorNamesReducer';
 
 export default combineReducers({
@@ -11,4 +12,5 @@ export default combineReducers({
     form: formReducer,
     names: sensorNamesReducer,
     day: fetchDayByDateReducer,
+    path: pathReducer,
 });

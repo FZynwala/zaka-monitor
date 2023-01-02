@@ -9,12 +9,6 @@ const FooterMenu = ({}) => {
             <Link to={'/history'}>
                 <FooterMenuItem icon={'history'} label={'historia'} />
             </Link>
-            <Link to={'/history'}>
-                <FooterMenuItem icon={'history'} label={'historia'} />
-            </Link>
-            <Link to={'/history'}>
-                <FooterMenuItem icon={'history'} label={'historia'} />
-            </Link>
         </div>
     );
 };

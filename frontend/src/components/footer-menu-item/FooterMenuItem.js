@@ -6,7 +6,7 @@ const FooterMenuItem = ({ icon, label }) => {
     return (
         <div className={'footer-menu-item'}>
             <Icon name={icon} fitted={true} size={'large'} />
-            <div className={'label'}>{label}</div>
+            {/* <div className={'label'}>{label}</div> */}
         </div>
     );
 };

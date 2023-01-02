@@ -22,6 +22,8 @@ export const prepareRechartData = (data, sensorName, isOldData) => {
 };
 
 export const dateWithMixedTimeType = moment('23.12.2022', 'DD.MM.YYYY');
+export const firstTempOutDate = moment('13.06.2020', 'DD.MM.YYYY');
+export const firstSensor4Date = moment('27.12.2022', 'DD.MM.YYYY');
 
 export const isOldData = (date) => moment(date, 'DD.MM.YYYY').isBefore(dateWithMixedTimeType);
 

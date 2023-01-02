@@ -19,8 +19,8 @@ class App extends React.Component {
     render() {
         return (
             <div>
-                <Header />
                 <HashRouter>
+                    <Header />
                     <Route path="/" exact component={SensorsList} />
                     <Route path="/chart/temp/:id" exact component={ShowChart} />
                     <Route path="/chart/hum/:id" exact component={ShowChart} />
