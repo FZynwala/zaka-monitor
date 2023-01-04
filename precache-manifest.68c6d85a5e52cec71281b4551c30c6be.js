@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "75bd8314f3834202b93d3b6a14b0ca39",
+    "revision": "be4a438fb2ead7505e0d70c4366f3984",
     "url": "/zaka-monitor/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/zaka-monitor/static/css/2.fd38ddbf.chunk.css"
   },
   {
-    "revision": "533b4f0ed8dde1c8b92b",
+    "revision": "e0e747b546a990649bb9",
     "url": "/zaka-monitor/static/css/main.5a5d5297.chunk.css"
   },
   {
@@ -20,8 +20,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/zaka-monitor/static/js/2.c8536f7d.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "533b4f0ed8dde1c8b92b",
-    "url": "/zaka-monitor/static/js/main.29cc719a.chunk.js"
+    "revision": "e0e747b546a990649bb9",
+    "url": "/zaka-monitor/static/js/main.b9a6aa78.chunk.js"
   },
   {
     "revision": "2dbd077692b9d32dde87",
