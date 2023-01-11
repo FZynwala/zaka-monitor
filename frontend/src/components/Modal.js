@@ -1,53 +1,52 @@
+import { Field, Form, Formik } from 'formik';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { connect } from 'react-redux';
-import { Field, reduxForm } from 'redux-form';
+import { useChangeNamesMutation } from '../store';
+import './Modal.css';
 
-import { postName } from '../actions';
+export const Modal = (props) => {
+    const [changeNames] = useChangeNamesMutation();
 
-class Modal extends React.Component {
-    renderInput({ input, label }) {
-        return (
-            <div className="field">
-                <label>{label}</label>
-                <input {...input} />
-            </div>
-        );
-    }
-
-    onSubmit = async (formValues) => {
-        const body = {
-            name1: formValues.name1 ? formValues.name1 : this.props.names.a.name,
-            name2: formValues.name2 ? formValues.name2 : this.props.names.b.name,
-            name3: formValues.name3 ? formValues.name3 : this.props.names.c.name,
-        };
-        await this.props.postName(body);
-
-        this.props.history.push('/');
+    const initialValues = {
+        name1: props.names.a.name,
+        name2: props.names.b.name,
+        name3: props.names.c.name,
     };
 
-    render() {
-        return ReactDOM.createPortal(
-            <div onClick={this.props.onDismiss} className="ui dimmer modals visible active">
-                <div onClick={(e) => e.stopPropagation()} className="ui standard modal visible active">
-                    <div className="header">Zmień nazwę czujnika</div>
-                    <div className="content">
-                        <form onSubmit={this.props.handleSubmit(this.onSubmit)} className="ui form">
-                            <Field name="name1" component={this.renderInput} label="Nazwa czujnika 1:" />
-                            <Field name="name2" component={this.renderInput} label="Nazwa czujnika 2:" />
-                            <Field name="name3" component={this.renderInput} label="Nazwa czujnika 3:" />
-                            <div className="actions">
-                                <button className="ui black button">Zapisz</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>,
-            document.querySelector('#modal'),
-        );
-    }
-}
+    const handleSubmit = async (values) => {
+        const body = {
+            name1: values.name1,
+            name2: values.name2,
+            name3: values.name3,
+        };
+        await changeNames(body);
 
-export default reduxForm({
-    form: 'sensorsNames',
-})(connect(null, { postName })(Modal));
+        props.history.push('/');
+    };
+
+    return ReactDOM.createPortal(
+        <div onClick={props.onDismiss} className="ui dimmer modals visible active">
+            <div onClick={(e) => e.stopPropagation()} className="ui standard modal visible active">
+                <div className="header">Zmień nazwę czujnika</div>
+                <div className="content">
+                    <Formik initialValues={initialValues} onSubmit={handleSubmit}>
+                        <Form className="ui form">
+                            <label className="u-mb-small">{'Nazwa czujnika 1:'}</label>
+                            <Field name="name1" className="u-mb-small" />
+                            <label className="u-mb-small">{'Nazwa czujnika 2:'}</label>
+                            <Field name="name2" className="u-mb-small" />
+                            <label className="u-mb-small">{'Nazwa czujnika 3:'}</label>
+                            <Field name="name3" className="u-mb-l" />
+                            <div className="actions">
+                                <button type={'submit'} className="ui black button">
+                                    Zapisz
+                                </button>
+                            </div>
+                        </Form>
+                    </Formik>
+                </div>
+            </div>
+        </div>,
+        document.querySelector('#modal'),
+    );
+};

@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { formatTime } from '../utils';
-import './Card.css';
+import './card/Card.css';
 
 class Card extends React.Component {
     renderMaxTemp = () => {

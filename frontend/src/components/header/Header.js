@@ -1,22 +1,22 @@
 import React from 'react';
-import { trackPromise } from 'react-promise-tracker';
-import { connect, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { Icon } from 'semantic-ui-react';
-import { fetchToday, postCurrentPath } from '../actions';
+import { changePath, dayApi } from '../../store';
 import './Header.css';
 
-const Header = ({ fetchToday, postCurrentPath }) => {
-    const path = useSelector((state) => state.path);
+export const Header = () => {
+    const { path } = useSelector((state) => state.path);
+    const dispatch = useDispatch();
     const history = useHistory();
 
     const onFetchClick = () => {
-        trackPromise(fetchToday());
+        dispatch(dayApi.util.invalidateTags(['TODAY']));
     };
 
     const onBackClick = () => {
         history.push('/');
-        postCurrentPath('/');
+        dispatch(changePath('/'));
     };
 
     return (
@@ -41,5 +41,3 @@ const Header = ({ fetchToday, postCurrentPath }) => {
         </div>
     );
 };
-
-export default connect(null, { fetchToday, postCurrentPath })(Header);
