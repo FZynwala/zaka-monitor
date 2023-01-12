@@ -19,7 +19,7 @@
         "start": "nodemon index.js"
     },
     "engines": {
-        "node": "14.17.0"
+        "node": "14.17.4"
     },
     "author": "",
     "license": "ISC",

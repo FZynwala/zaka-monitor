@@ -1,109 +1,92 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { formatTime } from '../utils';
-import './Card.css';
+import './card/Card.css';
 
-class Card extends React.Component {
-    renderMaxTemp = () => {
-        if (this.props.maxTemp) {
-            var maxTemp = this.props.maxTemp.maxTemp;
-            var time = formatTime(this.props.maxTemp.time);
+export const CardExtended = (props) => {
+    const renderMaxTemp = () => {
+        if (props.maxTemp) {
+            var maxTemp = props.maxTemp.maxTemp;
+            var time = formatTime(props.maxTemp.time);
             return { maxTemp, time };
         }
 
         return 'Loading...';
     };
 
-    renderMinTemp = () => {
-        if (this.props.minTemp) {
-            var minTemp = this.props.minTemp.minTemp;
-            var time = formatTime(this.props.minTemp.time);
+    const renderMinTemp = () => {
+        if (props.minTemp) {
+            var minTemp = props.minTemp.minTemp;
+            var time = formatTime(props.minTemp.time);
             return { minTemp, time };
         }
 
         return 'Loding...';
     };
 
-    renderDoor = () => {
-        if (this.props.data) return this.props.data.isOpen ? 'otwarte' : 'zamknięte';
+    const renderDoor = () => {
+        if (props.data) return props.data.isOpen ? 'otwarte' : 'zamknięte';
     };
 
-    renderIsLightOn = () => {
-        if (this.props.data) {
-            return this.props.data.isLight ? 'ON' : 'OFF';
+    const renderIsLightOn = () => {
+        if (props.data) {
+            return props.data.isLight ? 'ON' : 'OFF';
         }
     };
 
-    renderTempOutdoor = () => {
-        if (this.props.data) {
-            return this.props.data.tempOut;
-        }
-    };
-
-    dotColor = () => {
-        if (this.props.id === '1') {
+    const dotColor = () => {
+        if (props.id === '1') {
             return 'yellow';
-        } else if (this.props.id === '2') {
+        } else if (props.id === '2') {
             return 'blue';
-        } else if (this.props.id === '3') {
+        } else if (props.id === '3') {
             return 'black';
         }
     };
 
-    onSettingClick = () => {
-        this.props.history.push('/settings');
+    const onSettingClick = () => {
+        props.history.push('/settings');
     };
 
-    render() {
-        if (this.props.data) {
-            var { temp, time, hum } = this.props.data;
-        }
+    if (props.data) {
+        var { temp, time, hum } = props.data;
+    }
 
-        return (
-            <div className="card background-color">
-                <div className="content">
-                    <div className="right floated mini ui header">
-                        <span className="temp-header">{`${temp} \u2103`}</span>
+    return (
+        <div className="card background-color">
+            <div className="content">
+                <div className="right floated mini ui header">
+                    <span className="temp-header">{`${temp} \u2103`}</span>
+                </div>
+                <div className="header">Garaż</div>
+                <div className="meta">ID czujnika: {props.id}</div>
+                <div className="description">
+                    Wilgotność: {`${hum}%`} <br />
+                    <span className="max-data">
+                        Max: {`${renderMaxTemp().maxTemp} \u2103`}
+                        <span className="time">o godz: {`${renderMaxTemp().time}`} </span>
+                        <br />
+                    </span>
+                    <span className="min-data">
+                        Min: {`${renderMinTemp().minTemp} \u2103`}
+                        <span className="time">o godz: {`${renderMinTemp().time}`} </span>
+                        <br />
+                    </span>
+                    Drzwi: {renderDoor()} <br />
+                    Światło: {renderIsLightOn()} <br />
+                    Czas: {`${formatTime(time)}`} <br />
+                </div>
+                <div className="extra content">
+                    <div className="right floated top-margin">
+                        <Link to={`/chart/temp/${props.id}`} className="ui green button">
+                            Wykres
+                        </Link>
                     </div>
-                    <div className="header">Garaż</div>
-                    <div className="meta">ID czujnika: {this.props.id}</div>
-                    <div className="description">
-                        Wilgotność: {`${hum}%`} <br />
-                        <span className="max-data">
-                            Max: {`${this.renderMaxTemp().maxTemp} \u2103`}
-                            <span className="time">o godz: {`${this.renderMaxTemp().time}`} </span>
-                            <br />
-                        </span>
-                        <span className="min-data">
-                            Min: {`${this.renderMinTemp().minTemp} \u2103`}
-                            <span className="time">o godz: {`${this.renderMinTemp().time}`} </span>
-                            <br />
-                        </span>
-                        Drzwi: {this.renderDoor()} <br />
-                        Światło: {this.renderIsLightOn()} <br />
-                        Czas: {`${formatTime(time)}`} <br />
-                    </div>
-                    <div className="extra content">
-                        <div className="right floated top-margin">
-                            <Link to={`/chart/temp/${this.props.id}`} className="ui green button">
-                                Wykres
-                            </Link>
-                        </div>
-                        <div onClick={this.onSettingClick} className="left floated">
-                            <div className={`dot-${this.dotColor()}`}></div>
-                        </div>
+                    <div onClick={onSettingClick} className="left floated">
+                        <div className={`dot-${dotColor()}`}></div>
                     </div>
                 </div>
             </div>
-        );
-    }
-}
-
-const mapStateToProps = (state) => {
-    return {
-        names: state.names,
-    };
+        </div>
+    );
 };
-
-export default connect(mapStateToProps)(Card);
