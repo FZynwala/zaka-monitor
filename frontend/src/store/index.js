@@ -16,7 +16,6 @@ export const store = configureStore({
 });
 
 setupListeners(store.dispatch);
-console.log(store.getState());
 
 export { dayApi } from './apis/dayApi';
 export { useFetchDayByDateMutation, useFetchTodayQuery } from './apis/dayApi.js';

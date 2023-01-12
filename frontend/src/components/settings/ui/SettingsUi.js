@@ -19,19 +19,3 @@ export const SettingsUi = (props) => {
         <Modal actions={renderActions()} onDismiss={() => history.push('/')} history={history} names={props.names} />
     );
 };
-
-// const mapStateToProps = (state) => {
-//     if (state.data.names) {
-//         return {
-//             names: state.names,
-//         };
-//     } else {
-//         return {
-//             names: state.names,
-//         };
-//     }
-// };
-
-// export default connect(mapStateToProps, {
-//     fetchName,
-// })(Settings);

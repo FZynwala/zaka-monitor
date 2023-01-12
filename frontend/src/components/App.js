@@ -1,6 +1,5 @@
 import React from 'react';
 import { HashRouter, Route } from 'react-router-dom';
-import { dayApi } from '../store';
 import './App.css';
 import FooterMenu from './footer-menu/FooterMenu';
 import { Header } from './header/Header';
@@ -10,8 +9,6 @@ import { Settings } from './settings/Settings';
 import { ShowChart } from './show-chart/ShowChart';
 
 export const App = () => {
-    //FETCH NAMES
-    console.log('dayApi', dayApi);
     return (
         <div>
             <HashRouter>
