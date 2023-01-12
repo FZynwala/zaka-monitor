@@ -1,35 +1,87 @@
+import moment from 'moment';
 import React from 'react';
-import { Card, Header, Label, Segment } from 'semantic-ui-react';
+import { Link } from 'react-router-dom';
+import { formatTime } from '../../utils';
+import './Card.css';
 
-export const CardExample = (props) => {
-    const square = { width: 30, height: 30 };
+export const Card = ({ data, maxTemp, minTemp, title, id, history, name }) => {
+    const renderMaxTemp = (temp) => {
+        if (temp) {
+            const maxTemp = temp.maxTemp;
+            const time = moment(temp.time).format('HH:mm');
+            return { maxTemp, time };
+        }
+
+        return 'Loading...';
+    };
+
+    const renderMinTemp = (temp) => {
+        if (temp) {
+            const minTemp = temp.minTemp;
+            const time = moment(temp.time).format('HH:mm');
+            return { minTemp, time };
+        }
+
+        return 'Loding...';
+    };
+
+    const dotColor = () => {
+        if (id === '1') {
+            return 'yellow';
+        } else if (id === '2') {
+            return 'blue';
+        } else if (id === '5') {
+            return 'purple';
+        }
+    };
+
+    const onSettingClick = () => {
+        history.push('/settings');
+    };
+
+    if (data) {
+        var { temp, time, hum } = data;
+    }
+
     return (
-        <Card>
-            <Card.Content>
-                <Label as="a" color="blue" ribbon>
-                    <Header as={'h2'}>Salon</Header>
-                </Label>
-                <Card.Header content={'Gora'}>
+        <>
+            <div className="card background-color">
+                <div className="content">
                     <div className="right floated mini ui header">
-                        <span className="temp-header">{props.temp ? `${props.temp} \u2103` : '----'}</span>
+                        <span className="temp-header">{temp ? `${temp} \u2103` : '----'}</span>
                     </div>
-                </Card.Header>
-                <Card.Meta>Id: 4</Card.Meta>
-                <Card.Description>
-                    <Segment.Group horizontal>
-                        <Segment>Wilgotność:</Segment>
-                        <Segment>45%</Segment>
-                    </Segment.Group>
-                    <Segment.Group horizontal>
-                        <Segment inverted color="red">
-                            Max: {`12 \u2103`}
-                        </Segment>
-                        <Segment>o godz.: 17:45</Segment>
-                    </Segment.Group>
-                    Wilgotność: {props.hum ? `${props.hum}%` : '45%'} <br /> Max: {`12 \u2103`}
-                </Card.Description>
-            </Card.Content>
-            <Card.Content extra></Card.Content>
-        </Card>
+                    <div className="header">{name}</div>
+                    <div className="meta">ID czujnika: {id}</div>
+                    <div className="description">
+                        Wilgotność: {hum ? `${hum}%` : '--'} <br />
+                        <span className="max-data">
+                            Max: {renderMaxTemp(maxTemp).maxTemp ? `${renderMaxTemp(maxTemp).maxTemp} \u2103` : '--'}
+                            <span className="time">
+                                o godz: {renderMaxTemp(maxTemp).time ? `${renderMaxTemp(maxTemp).time}` : '--:--'}{' '}
+                            </span>
+                            <br />
+                        </span>
+                        <span className="min-data">
+                            Min: {renderMinTemp(minTemp).minTemp ? `${renderMinTemp(minTemp).minTemp} \u2103` : '--'}
+                            <span className="time">
+                                o godz: {renderMinTemp(minTemp).time ? `${renderMinTemp(minTemp).time}` : '--:--'}{' '}
+                            </span>
+                            <br />
+                        </span>
+                        Czas: {`${formatTime(time)}`} <br />
+                    </div>
+                    <div className="extra content">
+                        <div className="right floated top-margin">
+                            <Link to={`/chart/temp/${id}`} className="ui green button">
+                                Wykres
+                            </Link>
+                        </div>
+                        <div onClick={onSettingClick} className="left floated">
+                            <div className={`dot-${dotColor()}`}></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </>
     );
 };
