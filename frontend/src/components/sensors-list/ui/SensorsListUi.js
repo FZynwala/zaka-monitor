@@ -60,21 +60,3 @@ export const SensorsListUi = ({ today, sensorsNames }) => {
         </>
     );
 };
-
-// const mapStateToProps = (state) => {
-//     if (state.data.today) {
-//         return {
-//             sensor01: state.data.today.sensor01,
-//             sensor02: state.data.today.sensor02,
-//             sensor03: state.data.today.sensor03,
-//             sensor04: state.data.today.sensor04,
-//             maxTemp: state.data.today.maxTemp,
-//             minTemp: state.data.today.minTemp,
-//             names: state.names,
-//         };
-//     } else {
-//         return {
-//             names: state.names,
-//         };
-//     }
-// };

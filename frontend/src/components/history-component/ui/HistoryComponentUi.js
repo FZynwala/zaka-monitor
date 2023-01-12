@@ -6,6 +6,7 @@ import { Checkbox, Form, Grid, Header } from 'semantic-ui-react';
 import { useFetchDayByDateMutation } from '../../../store';
 import { firstSensor4Date, firstTempOutDate, isOldData, prepareRechartData } from '../../../utils';
 import { LoadingComponent } from '../../LoadingComponent';
+import { ErrorNotification } from '../../notifications/ErrorNotification';
 import { Rechart } from '../../rechart/Rechart';
 import '../HistoryComponent.css';
 
@@ -26,7 +27,7 @@ export const HistoryComponentUi = ({ names }) => {
         isTempOut: false,
         isSensor4: false,
     });
-    const [fetchDayByDate, { data: day, isLoading }] = useFetchDayByDateMutation();
+    const [fetchDayByDate, { data: day, isLoading: isLoadingDay, isError: isErrorDay }] = useFetchDayByDateMutation();
 
     const handleDateChange = async (event, data) => {
         if (isOldData(data.value)) setIsOldDataFormat(true);
@@ -54,8 +55,13 @@ export const HistoryComponentUi = ({ names }) => {
                     moment(date).isAfter('2019-12-23', 'YYYY-MM-DD') && moment(date).isBefore(moment())
                 }
             />
-            {isLoading ? (
+            {isLoadingDay ? (
                 <LoadingComponent />
+            ) : isErrorDay ? (
+                <ErrorNotification
+                    content={'Błąd przy pobieraniu danego dnia. Spróbuj ponownie za chwile.'}
+                    header={'Błąd połączenia!'}
+                />
             ) : (
                 <>
                     {showForm && (
