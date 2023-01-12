@@ -2,8 +2,8 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 
 import { Card } from '../../card/Card';
-import CardExtended from '../../CardExtended';
-import CardTempOut from '../../CardTempOut';
+import { CardExtended } from '../../CardExtended';
+import { CardTempOut } from '../../CardTempOut';
 import '../SensorList.css';
 
 export const SensorsListUi = ({ today, sensorsNames }) => {
