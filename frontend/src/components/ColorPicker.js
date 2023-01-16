@@ -5,15 +5,15 @@ import { changeColor } from '../actions';
 import './ColorPicker.css';
 
 class ColorPicker extends React.Component {
-    color = "black-pearl";
+    color = 'black-pearl';
 
     onItemClick = (e) => {
         this.color = e.target.className.slice(5);
-    }
+    };
 
     onSaveClick = () => {
         this.props.changeColor(this.color);
-    }
+    };
 
     render() {
         return (
@@ -29,20 +29,24 @@ class ColorPicker extends React.Component {
                     <div className="color magenta-purple"></div>
                     <div className="color ships-officer"></div>
                 </div>
-                <div className=''="ui buttons" id="save">
-                    <Link to="/" className="ui button">Cancel</Link>
+                <div className="ui buttons" id="save">
+                    <Link to="/" className="ui button">
+                        Cancel
+                    </Link>
                     <div className="or"></div>
-                    <Link to="/" className="ui positive button" onClick={this.onSaveClick}>Save</Link>
+                    <Link to="/" className="ui positive button" onClick={this.onSaveClick}>
+                        Save
+                    </Link>
                 </div>
             </div>
         );
-    };
-};
+    }
+}
 
 const mapStateToProps = (state) => {
     return {
-        color: state.color.color
-    }
-}
+        color: state.color.color,
+    };
+};
 
 export default connect(mapStateToProps, { changeColor })(ColorPicker);

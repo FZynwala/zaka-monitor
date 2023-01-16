@@ -2,7 +2,12 @@ import React from 'react';
 import { Message } from 'semantic-ui-react';
 import './ErrorNotification.css';
 
-export const ErrorNotification = ({ content, header }) => {
+type ErrorNotificationProps = {
+    content: string;
+    header: string;
+};
+
+export const ErrorNotification: React.FC<ErrorNotificationProps> = ({ content, header }) => {
     return (
         <>
             <Message negative className={'u-mh'}>

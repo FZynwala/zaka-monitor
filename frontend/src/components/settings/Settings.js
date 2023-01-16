@@ -1,6 +1,6 @@
 import React from 'react';
 import { useFetchNamesQuery } from '../../store';
-import { LoadingComponent } from '../LoadingComponent';
+import { LoadingComponent } from '../loading-component/LoadingComponent';
 
 import { SettingsUi } from './ui/SettingsUi';
 

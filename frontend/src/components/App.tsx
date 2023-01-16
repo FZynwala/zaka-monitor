@@ -1,10 +1,10 @@
 import React from 'react';
 import { HashRouter, Route } from 'react-router-dom';
 import './App.css';
-import FooterMenu from './footer-menu/FooterMenu';
+import { FooterMenu } from './footer-menu/FooterMenu';
 import { Header } from './header/Header';
 import { HistoryComponent } from './history-component/HistoryComponent';
-import { SensorsList } from './sensors-list/SensorList.js';
+import { SensorsList } from './sensors-list/SensorList';
 import { Settings } from './settings/Settings';
 import { ShowChart } from './show-chart/ShowChart';
 

@@ -1,14 +1,16 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { ChangeNamesRequestBody, Names } from 'types';
 import { baseApiUrl } from '../../config/config';
 
 export const namesApi = createApi({
     reducerPath: 'names',
+    tagTypes: ['NAMES'],
     baseQuery: fetchBaseQuery({
         baseUrl: baseApiUrl,
     }),
     endpoints(buldier) {
         return {
-            fetchNames: buldier.query({
+            fetchNames: buldier.query<Names, void>({
                 providesTags: ['NAMES'],
                 query: () => {
                     return {
@@ -17,7 +19,7 @@ export const namesApi = createApi({
                     };
                 },
             }),
-            changeNames: buldier.mutation({
+            changeNames: buldier.mutation<ChangeNamesRequestBody, void>({
                 invalidatesTags: ['NAMES'],
                 query: (body) => {
                     return {

@@ -1,9 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { ChartData, ChartType } from 'types';
+import { Rechart } from '../rechart/Rechart';
 import './ChartModal.css';
-import { Rechart } from './rechart/Rechart';
 
-const ChartModal = ({ data, type, actions, onDismiss }) => {
+type ChartModalProps = {
+    data?: ChartData;
+    type?: ChartType;
+    actions: JSX.Element;
+    onDismiss: () => void;
+};
+
+export const ChartModal: React.FC<ChartModalProps> = ({ data, type, actions, onDismiss }) => {
     const tempTitle = 'Temperatura w \u2103';
     const humTitle = 'Wilgotność w %';
 
@@ -20,11 +28,9 @@ const ChartModal = ({ data, type, actions, onDismiss }) => {
                 <div className="actions">{actions}</div>
             </div>
         </div>,
-        document.querySelector('#modal'),
+        document.querySelector('#modal') as Element,
     );
 };
-
-export default ChartModal;
 
 {
     /* <Modal
