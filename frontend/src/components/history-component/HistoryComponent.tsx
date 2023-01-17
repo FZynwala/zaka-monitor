@@ -1,16 +1,14 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { useRouteMatch } from 'react-router-dom';
 import 'react-semantic-ui-datepickers/dist/react-semantic-ui-datepickers.css';
 import { changePath, useFetchNamesQuery } from '../../store';
-import { LoadingComponent } from '../LoadingComponent';
+import { LoadingComponent } from '../loading-component/LoadingComponent';
 import { ErrorNotification } from '../notifications/ErrorNotification';
 import './HistoryComponent.css';
 import { HistoryComponentUi } from './ui/HistoryComponentUi';
 
-export const HistoryComponent = () => {
+export const HistoryComponent: React.FC = () => {
     const { data: names, isLoading, isError } = useFetchNamesQuery();
-    const match = useRouteMatch();
     const dispatch = useDispatch();
 
     useEffect(() => {

@@ -1,14 +1,16 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { Today } from 'types';
 import { baseApiUrl } from '../../config/config';
 
 export const dayApi = createApi({
     reducerPath: 'day',
+    tagTypes: ['TODAY'],
     baseQuery: fetchBaseQuery({
         baseUrl: baseApiUrl,
     }),
     endpoints(buldier) {
         return {
-            fetchToday: buldier.query({
+            fetchToday: buldier.query<Today, void>({
                 providesTags: ['TODAY'],
                 query: () => {
                     return {
@@ -30,4 +32,4 @@ export const dayApi = createApi({
     },
 });
 
-export const { useFetchTodayQuery, useFetchDayByDateMutation, useUpdateTodayMutation } = dayApi;
+export const { useFetchTodayQuery, useFetchDayByDateMutation } = dayApi;

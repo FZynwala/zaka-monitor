@@ -3,14 +3,19 @@ import React, { useState } from 'react';
 import SemanticDatepicker from 'react-semantic-ui-datepickers';
 import 'react-semantic-ui-datepickers/dist/react-semantic-ui-datepickers.css';
 import { Checkbox, Form, Grid, Header } from 'semantic-ui-react';
+import { Names, SensorName } from 'types';
 import { useFetchDayByDateMutation } from '../../../store';
 import { firstSensor4Date, firstTempOutDate, isOldData, prepareRechartData } from '../../../utils';
-import { LoadingComponent } from '../../LoadingComponent';
+import { LoadingComponent } from '../../loading-component/LoadingComponent';
 import { ErrorNotification } from '../../notifications/ErrorNotification';
 import { Rechart } from '../../rechart/Rechart';
 import '../HistoryComponent.css';
 
-export const HistoryComponentUi = ({ names }) => {
+type HistoryComponentUiProps = {
+    names?: Names;
+};
+
+export const HistoryComponentUi: React.FC<HistoryComponentUiProps> = ({ names }) => {
     const [values, setValues] = useState({
         isSensor1: false,
         isSensor2: false,
@@ -28,7 +33,7 @@ export const HistoryComponentUi = ({ names }) => {
         isSensor4: false,
     });
     const [fetchDayByDate, { data: day, isLoading: isLoadingDay, isError: isErrorDay }] = useFetchDayByDateMutation();
-
+    // @ts-ignore
     const handleDateChange = async (event, data) => {
         if (isOldData(data.value)) setIsOldDataFormat(true);
         else setIsOldDataFormat(false);
@@ -51,9 +56,7 @@ export const HistoryComponentUi = ({ names }) => {
             </Header>
             <SemanticDatepicker
                 onChange={handleDateChange}
-                filterDate={(date) =>
-                    moment(date).isAfter('2019-12-23', 'YYYY-MM-DD') && moment(date).isBefore(moment())
-                }
+                filterDate={(date) => moment(date).isAfter('2019-12-23') && moment(date).isBefore(moment())}
             />
             {isLoadingDay ? (
                 <LoadingComponent />
@@ -70,25 +73,19 @@ export const HistoryComponentUi = ({ names }) => {
                                 <Grid.Column>
                                     <Form.Field>
                                         <Checkbox
-                                            label={names.a.name}
+                                            label={names?.a.name}
                                             name="sensor1"
-                                            value={values.isSensor1}
-                                            checked={values.isSensor1 === true}
-                                            onChange={(e, data) =>
-                                                setValues({ ...values, isSensor1: !values.isSensor1 })
-                                            }
+                                            checked={values.isSensor1}
+                                            onChange={() => setValues({ ...values, isSensor1: !values.isSensor1 })}
                                             className={'u-text-color'}
                                         />
                                     </Form.Field>
                                     <Form.Field>
                                         <Checkbox
-                                            label={names.b.name}
+                                            label={names?.b.name}
                                             name="sensor2"
-                                            value={values.isSensor2}
-                                            checked={values.isSensor2 === true}
-                                            onChange={(e, data) =>
-                                                setValues({ ...values, isSensor2: !values.isSensor2 })
-                                            }
+                                            checked={values.isSensor2}
+                                            onChange={() => setValues({ ...values, isSensor2: !values.isSensor2 })}
                                         />
                                     </Form.Field>
                                 </Grid.Column>
@@ -98,22 +95,16 @@ export const HistoryComponentUi = ({ names }) => {
                                             <Checkbox
                                                 label="Garaż"
                                                 name="sensor3"
-                                                value={values.isSensor3}
-                                                checked={values.isSensor3 === true}
-                                                onChange={(e, data) =>
-                                                    setValues({ ...values, isSensor3: !values.isSensor3 })
-                                                }
+                                                checked={values.isSensor3}
+                                                onChange={() => setValues({ ...values, isSensor3: !values.isSensor3 })}
                                             />
                                         </Form.Field>
                                         <Form.Field>
                                             <Checkbox
                                                 label="Na zewnątrz"
                                                 name="tempOut"
-                                                value={values.isTempOut}
-                                                checked={values.isTempOut === true}
-                                                onChange={(e, data) =>
-                                                    setValues({ ...values, isTempOut: !values.isTempOut })
-                                                }
+                                                checked={values.isTempOut}
+                                                onChange={() => setValues({ ...values, isTempOut: !values.isTempOut })}
                                             />
                                         </Form.Field>
                                     </Grid.Column>
@@ -122,13 +113,10 @@ export const HistoryComponentUi = ({ names }) => {
                                     <Grid.Column>
                                         <Form.Field>
                                             <Checkbox
-                                                label={names.c.name}
+                                                label={names?.c.name}
                                                 name="sensor4"
-                                                value={values.isSensor4}
-                                                checked={values.isSensor4 === true}
-                                                onChange={(e, data) =>
-                                                    setValues({ ...values, isSensor4: !values.isSensor4 })
-                                                }
+                                                checked={values.isSensor4}
+                                                onChange={() => setValues({ ...values, isSensor4: !values.isSensor4 })}
                                             />
                                         </Form.Field>
                                     </Grid.Column>
@@ -140,10 +128,10 @@ export const HistoryComponentUi = ({ names }) => {
                         {values.isSensor1 && (
                             <>
                                 <Header textAlign={'center'} dividing={true} className={'u-mb-non u-text-color'}>
-                                    {names.a.name}
+                                    {names?.a.name}
                                 </Header>
                                 <Rechart
-                                    data={prepareRechartData(day.sensor01, 'sensor01', isOldDataFormat)}
+                                    data={prepareRechartData(day.sensor01, isOldDataFormat, SensorName.SENSOR_01)}
                                     type={'temp'}
                                     isHistory={true}
                                 />
@@ -152,10 +140,10 @@ export const HistoryComponentUi = ({ names }) => {
                         {values.isSensor2 && (
                             <>
                                 <Header textAlign={'center'} dividing={true} className={'u-mb-non u-text-color'}>
-                                    {names.b.name}
+                                    {names?.b.name}
                                 </Header>
                                 <Rechart
-                                    data={prepareRechartData(day.sensor02, 'sensor02', isOldDataFormat)}
+                                    data={prepareRechartData(day.sensor02, isOldDataFormat, SensorName.SENSOR_02)}
                                     type={'temp'}
                                     isHistory={true}
                                 />
@@ -167,7 +155,7 @@ export const HistoryComponentUi = ({ names }) => {
                                     Garaż
                                 </Header>
                                 <Rechart
-                                    data={prepareRechartData(day.sensor03, 'sensor03', isOldDataFormat)}
+                                    data={prepareRechartData(day.sensor03, isOldDataFormat, SensorName.SENSOR_03)}
                                     type={'temp'}
                                     isHistory={true}
                                 />
@@ -176,10 +164,10 @@ export const HistoryComponentUi = ({ names }) => {
                         {values.isSensor4 && showCheckboxes.isSensor4 && (
                             <>
                                 <Header textAlign={'center'} dividing={true} className={'u-mb-non u-text-color'}>
-                                    {names.c.name}
+                                    {names?.c.name}
                                 </Header>
                                 <Rechart
-                                    data={prepareRechartData(day.sensor04, 'sensor04', isOldDataFormat)}
+                                    data={prepareRechartData(day.sensor04, isOldDataFormat, SensorName.SENSOR_04)}
                                     type={'temp'}
                                     isHistory={true}
                                 />
@@ -192,7 +180,7 @@ export const HistoryComponentUi = ({ names }) => {
                                 </Header>
                                 <div className="u-mr">
                                     <Rechart
-                                        data={prepareRechartData(day.sensor03, 'sensor03', isOldDataFormat)}
+                                        data={prepareRechartData(day.sensor03, isOldDataFormat, SensorName.SENSOR_03)}
                                         type={'tempOut'}
                                         isHistory={true}
                                         isTempOut

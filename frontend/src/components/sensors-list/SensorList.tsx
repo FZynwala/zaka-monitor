@@ -1,6 +1,6 @@
 import React from 'react';
 import { useFetchNamesQuery, useFetchTodayQuery } from '../../store';
-import { LoadingComponent } from '../LoadingComponent';
+import { LoadingComponent } from '../loading-component/LoadingComponent';
 import { ErrorNotification } from '../notifications/ErrorNotification';
 import { SensorsListUi } from './ui/SensorsListUi';
 
@@ -21,7 +21,7 @@ export const SensorsList = () => {
                     header={'Błąd połączenia'}
                 />
             ) : (
-                <SensorsListUi today={data.today} sensorsNames={sensorsNames} />
+                <SensorsListUi today={data?.today} sensorsNames={sensorsNames} />
             )}
         </>
     );

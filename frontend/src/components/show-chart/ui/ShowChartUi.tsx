@@ -1,14 +1,19 @@
 import React from 'react';
 import { Link, useHistory, useRouteMatch } from 'react-router-dom';
+import { ChartType, SensorName, Today } from 'types';
 import { isOldData, prepareRechartData } from '../../../utils';
-import ChartModal from '../../ChartModal';
+import { ChartModal } from '../../chart-modal/ChartModal';
 import '../ShowChart.css';
 
-export const ShowChartUi = (props) => {
-    const match = useRouteMatch();
+type ShowChartUiProps = {
+    data?: Today;
+};
+
+export const ShowChartUi: React.FC<ShowChartUiProps> = ({ data }) => {
+    const match = useRouteMatch<{ id: string }>();
     const history = useHistory();
 
-    const renderActions = () => {
+    const renderActions = (): JSX.Element => {
         if (match.params.id === '4') {
             return (
                 <React.Fragment>
@@ -31,37 +36,43 @@ export const ShowChartUi = (props) => {
     };
 
     const getChartType = () => {
-        return match.path === '/chart/hum/:id' ? 'hum' : match.params.id === '4' ? 'tempOut' : 'temp';
+        return match.path === '/chart/hum/:id'
+            ? ChartType.HUM
+            : match.params.id === '4'
+            ? ChartType.TEMP_OUT
+            : ChartType.TEMP;
     };
 
-    const getSensorName = (id) => {
+    const getSensorName = (id: string): SensorName | undefined => {
         switch (id) {
             case '1':
-                return 'sensor01';
+                return SensorName.SENSOR_01;
             case '2':
-                return 'sensor02';
+                return SensorName.SENSOR_02;
             case '3':
-                return 'sensor03';
+                return SensorName.SENSOR_03;
             case '4':
-                return 'sensor03';
+                return SensorName.SENSOR_03;
             case '5':
-                return 'sensor04';
+                return SensorName.SENSOR_04;
+            default:
+                return undefined;
         }
     };
 
-    if (props.data.today) {
+    if (data?.today) {
         return (
             <ChartModal
                 data={[
                     ...prepareRechartData(
-                        props.data.yesterday[getSensorName(match.params.id)],
+                        data.yesterday[getSensorName(match.params.id) || ''],
+                        isOldData(data.today.date),
                         getSensorName(match.params.id),
-                        isOldData(props.data.today.date),
                     ),
                     ...prepareRechartData(
-                        props.data.today[getSensorName(match.params.id)],
+                        data.today[getSensorName(match.params.id) || ''],
+                        isOldData(data.today.date),
                         getSensorName(match.params.id),
-                        isOldData(props.data.today.date),
                     ),
                 ]}
                 type={getChartType()}
@@ -70,14 +81,6 @@ export const ShowChartUi = (props) => {
             />
         );
     } else {
-        return (
-            <ChartModal
-                xData={null}
-                yData={null}
-                type={match.path === '/chart/temp/:id' ? 'temp' : 'hum'}
-                actions={renderActions()}
-                onDismiss={() => history.push('/')}
-            />
-        );
+        return <ChartModal actions={renderActions()} onDismiss={() => history.push('/')} />;
     }
 };

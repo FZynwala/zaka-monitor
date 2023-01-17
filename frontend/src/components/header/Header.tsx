@@ -2,19 +2,19 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { Icon } from 'semantic-ui-react';
-import { changePath, dayApi } from '../../store';
+import { changePath, dayApi, RootState } from '../../store';
 import './Header.css';
 
-export const Header = () => {
-    const { path } = useSelector((state) => state.path);
+export const Header: React.FC = () => {
+    const { path } = useSelector((state: RootState) => state.path);
     const dispatch = useDispatch();
     const history = useHistory();
 
-    const onFetchClick = () => {
+    const onFetchClick = (): void => {
         dispatch(dayApi.util.invalidateTags(['TODAY']));
     };
 
-    const onBackClick = () => {
+    const onBackClick = (): void => {
         history.push('/');
         dispatch(changePath('/'));
     };

@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { setupListeners } from '@reduxjs/toolkit/dist/query';
 import { dayApi } from './apis/dayApi';
-import { namesApi } from './apis/namesApi.js';
+import { namesApi } from './apis/namesApi';
 import { pathReducer } from './slices';
 
 export const store = configureStore({
@@ -17,7 +17,8 @@ export const store = configureStore({
 
 setupListeners(store.dispatch);
 
-export { dayApi } from './apis/dayApi';
-export { useFetchDayByDateMutation, useFetchTodayQuery } from './apis/dayApi.js';
-export { useChangeNamesMutation, useFetchNamesQuery } from './apis/namesApi.js';
+export { dayApi, useFetchDayByDateMutation, useFetchTodayQuery } from './apis/dayApi';
+export { useChangeNamesMutation, useFetchNamesQuery } from './apis/namesApi';
 export { changePath } from './slices';
+
+export type RootState = ReturnType<typeof store.getState>;
