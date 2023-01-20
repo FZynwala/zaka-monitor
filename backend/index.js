@@ -7,6 +7,7 @@ require('dotenv').config();
 const connectdb = require('./config/db.config');
 const dataRoute = require('./routers/data.route');
 const sensorRouter = require('./routers/sensor.route');
+const weatherRouter = require('./routers/weather.route');
 
 const app = express();
 
@@ -34,6 +35,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use('/', dataRoute);
 app.use('/sensor', sensorRouter);
+app.use('/weather', weatherRouter);
 
 const port = process.env.PORT || 8000;
 app.listen(port);
