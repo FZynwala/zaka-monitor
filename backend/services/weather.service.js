@@ -41,6 +41,22 @@ const postWeather = async (requestBody) => {
     }
 };
 
+const getWeather = async () => {
+    const weather = await weatherModel.Weather.findOne({ date: moment(new Date()).format('l') });
+
+    return weatherMapper(weather);
+};
+
 module.exports = {
     postWeather,
+    getWeather,
+};
+
+const weatherMapper = (weather) => {
+    return {
+        windSpeed: weather.windSpeed,
+        windVane: weather.windVane,
+        rainGauge: weather.rainGauge,
+        date: weather.date,
+    };
 };
