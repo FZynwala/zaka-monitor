@@ -98,3 +98,25 @@ export type ChartDataItem = {
     tempOut?: number;
     time: number;
 };
+
+export type WindSpeedItem = {
+    windSpeed: string;
+    time: string;
+};
+
+export type WindVaneItem = {
+    windVane: string;
+    time: string;
+};
+
+export type RainGaugeItem = {
+    rainGauge: string;
+    time: string;
+};
+
+export type Weather = {
+    windSpeed: WindSpeedItem[];
+    windVane: WindVaneItem[];
+    rainGauge: RainGaugeItem[];
+    date: string;
+};

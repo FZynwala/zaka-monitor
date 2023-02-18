@@ -1,0 +1,16 @@
+.statistic-container {
+    display: flex;
+    justify-content: space-around;
+    margin: 25px 15px 35px 15px;
+    align-items: center;
+
+}
+
+.container {
+    /* display: flex; */
+    /* justify-content: center; */
+    margin: 15px;
+    /* flex-direction: column; */
+    
+
+}
