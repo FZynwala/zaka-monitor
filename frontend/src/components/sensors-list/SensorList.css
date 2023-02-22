@@ -11,6 +11,14 @@
     margin-bottom: 50px;
 }
 
+.u-pl {
+    padding-left: 13px;
+}
+
+.u-pr {
+    padding-right: 13px;
+}
+
 .empty-space {
     height: 3rem;
     width: 90%;

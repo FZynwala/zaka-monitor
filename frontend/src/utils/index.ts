@@ -2,6 +2,7 @@ import moment from 'moment';
 import { ChartData, ChartDataItem, Sensor, SensorName } from 'types';
 
 export const formatTime = (time: string): string => moment(time).format('HH:mm');
+export const formatSmallDate = (time: string): string => moment(time).format('dddd');
 
 export const prepareRechartData = (data: Sensor, isOldData: boolean, sensorName?: SensorName): ChartData => {
     return data.map((obj) => {
