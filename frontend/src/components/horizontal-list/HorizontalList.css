@@ -1,3 +1,20 @@
 .table {
-    width: 100px;
+    width: 135px;
+    padding: 0px;
+    margin: 0px;
+    color: #aeb1ba!important
+}
+
+.card-width {
+    width: 140px!important;
+    background-color: #6751a5!important;
+    color: #aeb1ba!important
+}
+
+.scroll-container {
+    background-color: #34495e!important;
+}
+
+.text-color {
+    color: #aeb1ba!important
 }

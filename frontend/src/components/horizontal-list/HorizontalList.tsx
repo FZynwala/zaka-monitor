@@ -50,8 +50,8 @@ export const HorizontalList: React.FC<HorizontalListProps> = ({ horizontalListit
 
     return (
         <>
-            <div className="example" style={{ paddingTop: '10px' }}>
-                <div onMouseLeave={dragStop}>
+            <div className="example" style={{ paddingTop: '10px', marginTop: '10px', backgroundColor: '#34495e' }}>
+                <div onMouseLeave={dragStop} style={{ backgroundColor: '#34495e' }}>
                     <ScrollMenu
                         LeftArrow={LeftArrow}
                         RightArrow={RightArrow}
@@ -59,29 +59,40 @@ export const HorizontalList: React.FC<HorizontalListProps> = ({ horizontalListit
                         onMouseDown={() => dragStart}
                         onMouseUp={() => dragStop}
                         onMouseMove={handleDrag}
+                        scrollContainerClassName={'scroll-container'}
+                        wrapperClassName={'scroll-container'}
+                        itemClassName={'scroll-container'}
                     >
                         {horizontalListitems.map((item) => (
                             <Card
-                                header={formatTime(item.time)}
-                                meta={formatSmallDate(item.time)}
+                                // header={formatTime(item.time)}
+                                // meta={formatSmallDate(item.time)}
                                 onClick={handleItemClick(item.time)}
+                                centered
+                                className={'card-width'}
                             >
-                                <Table unstackable={true} basic="very">
-                                    <Table.Body>
-                                        <Table.Row>
-                                            <Table.Cell width={5}>Rain Gauge</Table.Cell>
-                                            <Table.Cell width={3}>{item.rainGauge}</Table.Cell>
-                                        </Table.Row>
-                                        <Table.Row>
-                                            <Table.Cell>Wind speed</Table.Cell>
-                                            <Table.Cell>{item.windSpeed}</Table.Cell>
-                                        </Table.Row>
-                                        <Table.Row>
-                                            <Table.Cell>Wind vane</Table.Cell>
-                                            <Table.Cell>{item.windVane}</Table.Cell>
-                                        </Table.Row>
-                                    </Table.Body>
-                                </Table>
+                                <Card.Content textAlign={'center'}>
+                                    <Card.Header className={'text-color'}>{formatTime(item.time)}</Card.Header>
+                                    <Card.Meta className={'text-color'}>{formatSmallDate(item.time)}</Card.Meta>
+                                    <Card.Description textAlign={'center'} className={'table text-color'}>
+                                        <Table unstackable={true} basic="very">
+                                            <Table.Body>
+                                                <Table.Row>
+                                                    <Table.Cell width={5}>Rain Gauge</Table.Cell>
+                                                    <Table.Cell width={3}>{item.rainGauge}</Table.Cell>
+                                                </Table.Row>
+                                                <Table.Row>
+                                                    <Table.Cell>Wind speed</Table.Cell>
+                                                    <Table.Cell>{item.windSpeed}</Table.Cell>
+                                                </Table.Row>
+                                                <Table.Row>
+                                                    <Table.Cell>Wind vane</Table.Cell>
+                                                    <Table.Cell>{item.windVane}</Table.Cell>
+                                                </Table.Row>
+                                            </Table.Body>
+                                        </Table>
+                                    </Card.Description>
+                                </Card.Content>
                             </Card>
                         ))}
                     </ScrollMenu>
